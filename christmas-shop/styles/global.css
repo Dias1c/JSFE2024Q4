@@ -1,8 +1,67 @@
+@import url(../assets/fonts/Montserrat/fonts.css);
+@import url(../assets/fonts/Allura/fonts.css);
+
+:root {
+  --container-width-max: 1276px;
+  
+  --color-dark: #181C29;
+  --color-primary: #FF4646;
+  --color-white: #fff;
+
+  --background-color-content: #ECF3F8;
+
+  --border-radius-default: 20px;
+}
+
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 body {
-  margin: 0;
-  padding: 0;
+  color: var(--color-dark);
+}
+
+nav * {
+  list-style: none;
+}
+
+/* ? Text Styles */
+
+h1, h2, h3, h4, h5, h6, p, span, button {
+  font-family: 'Montserrat';
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+}
+
+p, span, button {
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 32px;
+  letter-spacing: 18%;
+}
+
+h2 {
+  font-size: 24px;
+  letter-spacing: 16%;
+}
+
+h3 {
+  font-size: 16px;
+  letter-spacing: 8%;
+}
+
+h4 {
+  font-size: 12px;
+  letter-spacing: 5%;
+}
+
+p {
+  font-size: 16px;
+  font-weight: 400;
 }
