@@ -133,3 +133,15 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+.color-tag--purple {
+  color: var(--color--tag-purple);
+}
+
+.color-tag--green {
+  color: var(--color--tag-green);
+}
+
+.color-tag--pink {
+  color: var(--color--tag-pink);
+}
