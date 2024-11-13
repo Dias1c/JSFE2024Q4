@@ -52,38 +52,38 @@ p, span, button, a {
 h1 {
   font-size: 32px;
   line-height:  150%;
-  letter-spacing: 18%;
+  letter-spacing: 0.18em;
 }
 
 h2 {
   font-size: 24px;
   line-height:  152%;
-  letter-spacing: 16%;
+  letter-spacing: 0.16em;
 }
 
 h3 {
   font-size: 16px;
   line-height:  152%;
-  letter-spacing: 8%;
+  letter-spacing: 0.08em;
 }
 
 h4 {
   font-size: 12px;
-  line-height:  130%;
+  line-height:  1.30em;
   letter-spacing: 5%;
 }
 
 p {
   font-size: 16px;
   font-weight: 400;
-  line-height:  148%;
+  line-height:  1.48em;
 }
 
 .typography--action-large {
   font-family: 'Montserrat';
   font-size: 24px;
   font-weight: 600;
-  line-height:  152%;
+  line-height:  1.52em;
   letter-spacing:  16%;
   text-transform: uppercase;
 }
@@ -93,7 +93,7 @@ p {
   font-size: 12px;
   font-weight: 600;
   line-height:  130%;
-  letter-spacing: 5%;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
@@ -102,7 +102,7 @@ p {
   font-size: 24px;
   font-weight: 400;
   line-height:  100%;
-  letter-spacing:  5%;
+  letter-spacing:  0.05em;
 }
 
 .typography--slider-text {
