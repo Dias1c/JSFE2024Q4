@@ -4,11 +4,18 @@
 :root {
   --container-width-max: 1276px;
   
-  --color-dark: #181C29;
-  --color-primary: #FF4646;
-  --color-white: #fff;
+  --color--primary: #FF4646;
+  --color--primary-10: #FF46461A;
+  --color--dark: #181C29;
+  --color--static-white: #fff;
+  --color--static-white-40: #FFFFFF66;
+  --color--static-white-20: #FFFFFF33;
+  --color--tag-purple: #4361FF;
+  --color--tag-pink: #FF43F7;
+  --color--tag-green: #06A44F;
+  --color--content-background: #ECF3F8;
+  --color--overlay: #181C29CC;
 
-  --background-color-content: #ECF3F8;
 
   --border-radius-default: 20px;
 }
@@ -20,7 +27,7 @@
 }
 
 body {
-  color: var(--color-dark);
+  color: var(--color--dark);
 }
 
 nav * {
@@ -35,6 +42,7 @@ h1, h2, h3, h4, h5, h6, p, span, button, a {
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
+  text-transform: uppercase;
 }
 
 p, span, button, a {
@@ -43,25 +51,68 @@ p, span, button, a {
 
 h1 {
   font-size: 32px;
+  line-height:  150%;
   letter-spacing: 18%;
 }
 
 h2 {
   font-size: 24px;
+  line-height:  152%;
   letter-spacing: 16%;
 }
 
 h3 {
   font-size: 16px;
+  line-height:  152%;
   letter-spacing: 8%;
 }
 
 h4 {
   font-size: 12px;
+  line-height:  130%;
   letter-spacing: 5%;
 }
 
 p {
   font-size: 16px;
   font-weight: 400;
+  line-height:  148%;
+}
+
+.typography--action-large {
+  font-family: 'Montserrat';
+  font-size: 24px;
+  font-weight: 600;
+  line-height:  152%;
+  letter-spacing:  16%;
+  text-transform: uppercase;
+}
+
+.typography--action-small {
+  font-family: 'Montserrat';
+  font-size: 12px;
+  font-weight: 600;
+  line-height:  130%;
+  letter-spacing: 5%;
+  text-transform: uppercase;
+}
+
+.typography--caption {
+  font-family: 'Allura';
+  font-size: 24px;
+  font-weight: 400;
+  line-height:  100%;
+  letter-spacing:  5%;
+}
+
+.typography--slider-text {
+  font-family: Montserrat;
+  font-size: 80px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
