@@ -3,7 +3,7 @@
 
 :root {
   --container-width-max: 1276px;
-  
+
   --color--primary: #FF4646;
   --color--primary-10: #FF46461A;
   --color--dark: #181C29;
@@ -36,55 +36,72 @@ nav * {
 
 /* ? Text Styles */
 
-h1, h2, h3, h4, h5, h6, p, span, button, a {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+button,
+a {
   font-family: 'Montserrat';
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 600;
   text-transform: uppercase;
 }
 
-p, span, button, a {
+p,
+span,
+button,
+a {
   font-weight: 400;
 }
 
 h1 {
   font-size: 32px;
-  line-height:  150%;
+  line-height: 150%;
   letter-spacing: 0.18em;
 }
 
 h2 {
   font-size: 24px;
-  line-height:  152%;
+  line-height: 152%;
   letter-spacing: 0.16em;
 }
 
 h3 {
   font-size: 16px;
-  line-height:  152%;
+  line-height: 152%;
   letter-spacing: 0.08em;
 }
 
 h4 {
   font-size: 12px;
-  line-height:  1.30em;
+  line-height: 1.30em;
   letter-spacing: 5%;
 }
 
 p {
   font-size: 16px;
   font-weight: 400;
-  line-height:  1.48em;
+  line-height: 1.48em;
 }
 
 .typography--action-large {
   font-family: 'Montserrat';
   font-size: 24px;
   font-weight: 600;
-  line-height:  1.52em;
-  letter-spacing:  16%;
+  line-height: 1.52em;
+  letter-spacing: 16%;
   text-transform: uppercase;
 }
 
@@ -92,7 +109,7 @@ p {
   font-family: 'Montserrat';
   font-size: 12px;
   font-weight: 600;
-  line-height:  130%;
+  line-height: 130%;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -101,8 +118,8 @@ p {
   font-family: 'Allura';
   font-size: 24px;
   font-weight: 400;
-  line-height:  100%;
-  letter-spacing:  0.05em;
+  line-height: 100%;
+  letter-spacing: 0.05em;
 }
 
 .typography--slider-text {
