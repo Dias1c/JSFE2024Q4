@@ -1,2 +1,61 @@
-@import url(../../assets/fonts/Montserrat/fonts.css);
-@import url(../../assets/fonts/Allura/fonts.css);
+@import url(../../styles/global.css);
+
+body {
+  background-color: #fff;
+}
+
+/* ? HEADER */
+
+.header__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  
+  margin: 0 auto;
+  padding: 12px 0;
+
+  max-width: var(--container-width-max);
+  width: 100%;
+}
+
+.header__content__company {
+  padding: 8px 20px;
+  
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header__content__company__logo {
+  height: 24px;
+  width: 24px;
+}
+
+.header__content__nav {
+  flex: 1;
+}
+
+.header__content__nav > nav {
+  margin-left: auto;
+}
+
+
+.header__content__nav ul {
+  display: flex;
+  justify-content: end;
+  gap: 8px;
+}
+
+.header__menu__button {
+  text-transform: uppercase;
+  padding: 12px 20px;
+  border-radius: 12px;
+}
+
+.header__menu__button:hover {
+  color: var(--color--primary);
+  background-color: var(--color--primary-10);
+}
+
+
