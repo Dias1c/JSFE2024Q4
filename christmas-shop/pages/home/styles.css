@@ -103,7 +103,7 @@ section:last-of-type {
   padding: 60px 0;
   color: var(--color--static-white);
   text-align: center;
-  max-width: 426px;
+  max-width: var(--box-small-width);
 }
 
 /* 
@@ -113,6 +113,7 @@ section:last-of-type {
 - Button style
 - Should i add image alt? 
 - remove sizes in images from html
+- add and style REMAINS in cta block
 */
 
 /* ? SECTION ABOUT */
@@ -147,7 +148,7 @@ section:last-of-type {
 
 .section_about__info {
   padding: 60px 0;
-  max-width: 426px;
+  max-width: var(--box-small-width);
 
   display: flex;
   flex-direction: column;
@@ -253,4 +254,20 @@ section:last-of-type {
 
   background-color: var(--color--static-white);
   flex: 1;
+}
+
+/* ? SECTION CTA */
+.section_cta {
+  color: var(--color--static-white);
+}
+
+.section_cta__container {
+  max-width: var(--box-small-width);
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 60px 0;
 }
