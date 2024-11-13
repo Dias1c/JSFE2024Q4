@@ -317,6 +317,14 @@ footer {
   border-radius: var(--border-radius-default);
 
   background-color: var(--color--content-background);
+
+  line-break: anywhere;
+
+  cursor: pointer;
+}
+
+.footer__container__contacts__card:hover * {
+  color: var(--color--primary);
 }
 
 .footer__container__contacts__card__icon {
@@ -345,4 +353,15 @@ footer {
 .footer__container__footer__social_link>img {
   width: 24px;
   height: 24px;
+}
+
+/* TODO: COLORS */
+.footer__container__footer__social_link:hover>img {
+  fill: var(--color--primary);
+  color: var(--color--primary);
+  stroke: var(--color--primary);
+}
+
+.footer__container__footer__made_by:hover {
+  color: var(--color--primary);
 }
