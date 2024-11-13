@@ -112,6 +112,8 @@ section:last-of-type {
 - Caption font is strange
 - letter spacing is strange
 - Button style
+- Should i add image alt? 
+- remove sizes in images from html
 */
 
 /* ? SECTION ABOUT */
@@ -152,5 +154,48 @@ section:last-of-type {
 
   display: flex;
   flex-direction: column;
+  gap: 20px;
+}
+
+/* ? SECIONT SLIDER */
+
+.section_slider {
+  color: var(--color--static-white);
+}
+
+.section_slider__container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section_slider__container__header {
+  margin: 0 auto;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section_slider__container__main {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.section_slider__container__main>img {
+  width: 200px;
+  height: 200px;
+  border-radius: var(--border-radius-default);
+}
+
+.section_slider__container__footer {
+  display: flex;
+  justify-content: end;
+}
+
+.section_slider__container__footer__controllers {
+  display: flex;
   gap: 20px;
 }
