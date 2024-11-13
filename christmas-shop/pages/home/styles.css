@@ -13,6 +13,12 @@ section {
   padding: 60px 8px;
 }
 
+header>*,
+section>*,
+footer>* {
+  margin: 0 auto;
+}
+
 section:first-of-type {
   background-image: url(../../assets/images/bg-snow.png), url(../../assets/images/bg-ball.png);
 
@@ -35,7 +41,6 @@ section:last-of-type {
   justify-content: space-between;
   gap: 12px;
 
-  margin: 0 auto;
   padding: 12px 0;
 
   max-width: var(--container-width-max);
@@ -107,6 +112,46 @@ section:last-of-type {
 - Caption font is strange
 - letter spacing is strange
 - Button style
+- content -> container
 */
 
 /* ? SECTION ABOUT */
+.section_about__container {
+  background-color: var(--color--static-white);
+  max-width: var(--container-width-max);
+  width: 100%;
+
+  border-radius: var(--border-radius-default);
+
+  display: flex;
+}
+
+.section_about__container .typography--caption {
+  color: var(--color--primary);
+}
+
+.section_about__container>* {
+  /* flex: 1; */
+  width: 50%;
+}
+
+.section_about__container>*:first-child {
+  padding: 100px 60px;
+}
+
+.section_about__container>*:last-child {
+  border-radius: var(--border-radius-default);
+
+  background-image: url(../../assets/images/santa.png);
+  background-position: center;
+  background-size: cover;
+}
+
+.section_about__info {
+  padding: 60px 0;
+  max-width: 426px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
