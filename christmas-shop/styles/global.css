@@ -29,7 +29,7 @@ nav * {
 
 /* ? Text Styles */
 
-h1, h2, h3, h4, h5, h6, p, span, button {
+h1, h2, h3, h4, h5, h6, p, span, button, a {
   font-family: 'Montserrat';
 }
 
@@ -37,7 +37,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
 }
 
-p, span, button {
+p, span, button, a {
   font-weight: 400;
 }
 
