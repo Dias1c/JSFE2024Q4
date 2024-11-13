@@ -3,6 +3,7 @@
 
 :root {
   --container-width-max: 1276px;
+  --box-small-width: 426px;
 
   --color--primary: #FF4646;
   --color--primary-10: #FF46461A;
