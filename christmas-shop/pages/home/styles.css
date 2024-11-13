@@ -35,7 +35,7 @@ section:last-of-type {
 
 /* ? HEADER */
 
-.header__content {
+.header__container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -47,7 +47,7 @@ section:last-of-type {
   width: 100%;
 }
 
-.header__content__company {
+.header__container__company {
   padding: 8px 20px;
 
   display: flex;
@@ -55,21 +55,21 @@ section:last-of-type {
   gap: 8px;
 }
 
-.header__content__company__logo {
+.header__container__company__logo {
   height: 24px;
   width: 24px;
 }
 
-.header__content__nav {
+.header__container__nav {
   flex: 1;
 }
 
-.header__content__nav>nav {
+.header__container__nav>nav {
   margin-left: auto;
 }
 
 
-.header__content__nav ul {
+.header__container__nav ul {
   display: flex;
   justify-content: end;
   gap: 8px;
@@ -112,7 +112,6 @@ section:last-of-type {
 - Caption font is strange
 - letter spacing is strange
 - Button style
-- content -> container
 */
 
 /* ? SECTION ABOUT */
