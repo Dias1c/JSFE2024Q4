@@ -4,10 +4,27 @@ body {
   background-color: #fff;
 }
 
-section,
-footer {
+section {
+  background-color: var(--color--primary);
+  background-image: url(../../assets/images/bg-snow.png);
+  background-position: center;
+  background-size: cover;
 
   padding: 60px 8px;
+}
+
+section:first-of-type {
+  background-image: url(../../assets/images/bg-snow.png), url(../../assets/images/bg-ball.png);
+
+  border-top-left-radius: var(--border-radius-default);
+  border-top-right-radius: var(--border-radius-default);
+}
+
+section:last-of-type {
+  background-image: url(../../assets/images/bg-snow.png), url(../../assets/images/bg-forest.png);
+
+  border-bottom-left-radius: var(--border-radius-default);
+  border-bottom-right-radius: var(--border-radius-default);
 }
 
 /* ? HEADER */
@@ -66,14 +83,6 @@ footer {
 
 /* ? SECTION HERO */
 .section_hero {
-  border-top-left-radius: var(--border-radius-default);
-  border-top-right-radius: var(--border-radius-default);
-
-  background-color: var(--color--primary);
-  background-image: url(../../assets/images/bg-snow.png), url(../../assets/images/bg-ball.png);
-  background-position: center;
-  background-size: cover;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -99,3 +108,5 @@ footer {
 - letter spacing is strange
 - Button style
 */
+
+/* ? SECTION ABOUT */
