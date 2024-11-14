@@ -101,9 +101,9 @@ header {
 .section_hero__container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 12px;
+
 
   padding: 60px 0;
   color: var(--color--static-white);
