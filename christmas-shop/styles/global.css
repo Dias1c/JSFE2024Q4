@@ -51,7 +51,9 @@ p,
 span,
 button,
 a {
-  font-family: 'Montserrat';
+  font-family: Montserrat;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
 }
 
 h1,
@@ -72,61 +74,63 @@ a {
 }
 
 h1 {
-  font-family: Montserrat;
   font-size: 32px;
   line-height: 48px;
   letter-spacing: 0.18em;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
 }
 
 h2 {
   font-size: 24px;
-  line-height: 152%;
+  font-weight: 600;
+  line-height: 36.48px;
   letter-spacing: 0.16em;
+
 }
 
 h3 {
   font-size: 16px;
-  line-height: 152%;
+  font-weight: 600;
+  line-height: 24.32px;
   letter-spacing: 0.08em;
+
 }
 
 h4 {
   font-size: 12px;
-  line-height: 1.30em;
-  letter-spacing: 5%;
+  font-weight: 600;
+  line-height: 15.6px;
+  letter-spacing: 0.05em;
 }
 
 p {
   font-size: 16px;
   font-weight: 400;
-  line-height: 1.48em;
+  line-height: 23.68px;
 }
 
 .typography--action-large {
-  font-family: 'Montserrat';
+  font-family: Montserrat;
   font-size: 24px;
   font-weight: 600;
-  line-height: 1.52em;
+  line-height: 36.48px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
 .typography--action-small {
-  font-family: 'Montserrat';
+  font-family: Montserrat;
   font-size: 12px;
   font-weight: 600;
-  line-height: 130%;
+  line-height: 15.6px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 .typography--caption {
-  font-family: 'Allura';
+  font-family: Allura;
   font-size: 24px;
   font-weight: 400;
-  line-height: 100%;
+  line-height: 24px;
   letter-spacing: 0.05em;
 }
 
@@ -134,6 +138,7 @@ p {
   font-family: Montserrat;
   font-size: 80px;
   font-weight: 600;
+  line-height: 97.52px;
   text-transform: uppercase;
 }
 
