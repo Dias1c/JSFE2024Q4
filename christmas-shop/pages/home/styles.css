@@ -38,27 +38,11 @@ section:last-of-type {
   align-items: center;
   gap: 12px;
 
-
   padding: 60px 0;
   color: var(--color--static-white);
   text-align: center;
   max-width: var(--box-small-width);
 }
-
-/* 
-  TODO:
-- Caption font is strange
-- letter spacing is strange
-- Button style
-- Should i add image alt? 
-- remove sizes in images from html
-- add and style REMAINS in cta block
-- Clickable cards
-- Clickable elements
-- Links
-- Resizeing
-- Check ASSETS/Variables/requirements IN FIGMA
-*/
 
 /* ? SECTION ABOUT */
 .section_about__container {
