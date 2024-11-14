@@ -150,3 +150,66 @@ a {
 .color-tag--pink {
   color: var(--color--tag-pink);
 }
+
+/* Button Styles */
+button {
+  border: none;
+  cursor: pointer;
+}
+
+button:disabled,
+button[disabled] {
+  cursor: not-allowed;
+}
+
+/* BUTTON PRIMARY */
+.button--primary {
+  border-radius: var(--border-radius-default);
+  background-color: var(--color--dark);
+  padding: 20px 32px;
+  color: var(--color--static-white);
+}
+
+.button--primary:hover {
+  background-color: var(--color--static-white);
+  color: var(--color--dark);
+}
+
+
+/* BUTTON SLIDER */
+.button--slider-arrow {
+  background: none;
+  border: 1px solid var(--color--static-white);
+  border-radius: var(--border-radius-default);
+
+  padding: 16px;
+}
+
+.button--slider-arrow>img {
+  width: 22px;
+  height: 22px;
+}
+
+.button--slider-arrow:hover {
+  background: var(--color--static-white);
+}
+
+.button--slider-arrow:disabled,
+.button--slider-arrow[disabled] {
+  opacity: 0.4;
+}
+
+.button--slider-arrow:disabled:hover,
+.button--slider-arrow[disabled]:hover {
+  background: none;
+}
+
+
+/* BUTTON BACK TO TOP */
+
+.button--back-to-top {
+  border: 1px solid var(--color--primary);
+  border-radius: 100%;
+  padding: 22px;
+  background-color: var(--color--static-white);
+}
