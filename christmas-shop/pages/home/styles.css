@@ -1,25 +1,12 @@
 @import url(../../styles/global.css);
-
-body {
-  background-color: #fff;
-}
+@import url(../../styles/header.css);
+@import url(../../styles/footer.css);
 
 section {
   background-color: var(--color--primary);
   background-image: url(../../assets/images/bg-snow.png);
   background-position: center;
   background-size: cover;
-
-  padding: 60px 8px;
-  overflow: hidden;
-}
-
-header>*,
-section>*,
-footer>* {
-  max-width: var(--container-width-max);
-  width: 100%;
-  margin: 0 auto;
 }
 
 section:first-of-type {
@@ -34,60 +21,6 @@ section:last-of-type {
 
   border-bottom-left-radius: var(--border-radius-default);
   border-bottom-right-radius: var(--border-radius-default);
-}
-
-/* ? HEADER */
-
-header {
-  padding: 0 8px;
-}
-
-.header__container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-
-  padding: 12px 0;
-}
-
-.header__container__company {
-  padding: 8px 20px;
-
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.header__container__company__logo {
-  height: 24px;
-  width: 24px;
-}
-
-.header__container__nav {
-  flex: 1;
-}
-
-.header__container__nav>nav {
-  margin-left: auto;
-}
-
-
-.header__container__nav ul {
-  display: flex;
-  justify-content: end;
-  gap: 8px;
-}
-
-.header__menu__button {
-  text-transform: uppercase;
-  padding: 12px 20px;
-  border-radius: 12px;
-}
-
-.header__menu__button:hover {
-  color: var(--color--primary);
-  background-color: var(--color--primary-10);
 }
 
 /* ? SECTION HERO */
@@ -324,82 +257,4 @@ header {
 
 .box__timer__time_block:last-of-type:after {
   display: none;
-}
-
-/* ? FOOTER */
-footer {
-  padding: 60px 8px;
-}
-
-.footer__container {
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
-}
-
-.footer__container__contacts {
-  display: flex;
-  gap: 12px;
-}
-
-.footer__container__contacts__card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  flex: 1;
-
-  text-align: center;
-
-  padding: 20px;
-  border-radius: var(--border-radius-default);
-
-  background-color: var(--color--content-background);
-
-  line-break: anywhere;
-
-  cursor: pointer;
-}
-
-.footer__container__contacts__card:hover * {
-  color: var(--color--primary);
-}
-
-.footer__container__contacts__card__icon {
-  width: 80px;
-  height: 80px;
-}
-
-.footer__container__footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-
-  text-align: center;
-}
-
-.footer__container__footer__social_links {
-  display: flex;
-  gap: 12px;
-}
-
-.footer__container__footer__social_link {
-  padding: 8px;
-}
-
-.footer__container__footer__social_link>img {
-  width: 24px;
-  height: 24px;
-}
-
-/* TODO: COLORS */
-.footer__container__footer__social_link:hover>img {
-  fill: var(--color--primary);
-  color: var(--color--primary);
-  stroke: var(--color--primary);
-}
-
-.footer__container__footer__made_by:hover {
-  color: var(--color--primary);
 }
