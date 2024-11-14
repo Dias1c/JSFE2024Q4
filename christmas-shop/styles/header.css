@@ -2,6 +2,9 @@
 
 header {
   padding: 0 8px;
+  overflow: hidden;
+  max-width: var(--section-width-max);
+  margin: 0 auto;
 }
 
 .header__container {
@@ -45,10 +48,16 @@ header {
   text-transform: uppercase;
   padding: 12px 20px;
   border-radius: 12px;
+
+  transition: 0.2s;
 }
 
 .header__menu__button:hover,
-.header__menu__button.selected {
+.header__menu__button.active {
   color: var(--color--primary);
   background-color: var(--color--primary-10);
+}
+
+.header__menu__button.active {
+  cursor: default;
 }

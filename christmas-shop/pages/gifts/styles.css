@@ -10,6 +10,8 @@
   background-position: top;
   background-size: 100%;
   background-repeat: no-repeat;
+
+  border-radius: var(--border-radius-default);
 }
 
 .section_gifts__container {
@@ -35,10 +37,16 @@
   padding: 12px 20px;
   border-radius: 12px;
   background: none;
+
+  transition: 0.2s;
 }
 
 
 .section_gifts__container__tabs__item:hover,
-.section_gifts__container__tabs__item.selected {
+.section_gifts__container__tabs__item.active {
   background-color: var(--color--static-white-20);
+}
+
+.section_gifts__container__tabs__item.active {
+  cursor: default;
 }

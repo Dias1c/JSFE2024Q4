@@ -16,7 +16,12 @@
 
   color: var(--color--dark);
 
+  transition: 0.2s;
   cursor: pointer;
+}
+
+.gift_card * {
+  transition: 0.2s;
 }
 
 .gift_card:hover h3 {

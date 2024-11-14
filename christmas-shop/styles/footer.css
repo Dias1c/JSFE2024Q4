@@ -2,6 +2,9 @@
 
 footer {
   padding: 60px 8px;
+  overflow: hidden;
+  max-width: var(--section-width-max);
+  margin: 0 auto;
 }
 
 .footer__container {
@@ -32,6 +35,10 @@ footer {
   line-break: anywhere;
 
   cursor: pointer;
+}
+
+.footer__container__contacts__card * {
+  transition: 0.2s;
 }
 
 .footer__container__contacts__card:hover * {

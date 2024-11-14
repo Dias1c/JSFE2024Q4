@@ -2,6 +2,7 @@
 
 
 :root {
+  --section-width-max: 1440px;
   --container-width-max: 1276px;
   --box-small-width: 426px;
 
@@ -25,6 +26,10 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -139,6 +144,7 @@ p {
 a {
   text-decoration: none;
   color: inherit;
+  transition: 0.2s;
 }
 
 .color-tag--purple {
@@ -157,6 +163,8 @@ a {
 button {
   border: none;
   cursor: pointer;
+
+  transition: all 0.2s;
 }
 
 button:disabled,
@@ -221,6 +229,8 @@ button[disabled] {
 section {
   padding: 60px 8px;
   overflow: hidden;
+  max-width: var(--section-width-max);
+  margin: 0 auto;
 }
 
 header>*,
