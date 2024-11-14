@@ -47,7 +47,8 @@ header {
   border-radius: 12px;
 }
 
-.header__menu__button:hover {
+.header__menu__button:hover,
+.header__menu__button.selected {
   color: var(--color--primary);
   background-color: var(--color--primary-10);
 }
