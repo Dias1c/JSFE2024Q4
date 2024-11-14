@@ -288,6 +288,38 @@ header {
   padding: 60px 0;
 }
 
+/* ? TIMER */
+
+.box__timer {
+  background-color: var(--color--static-white-40);
+  border-radius: var(--border-radius-default);
+  padding: 8px 12px 12px;
+
+  display: flex;
+}
+
+.box__timer__time_block {
+  width: 80px;
+  text-align: center;
+  position: relative;
+}
+
+.box__timer__time_block::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 1px;
+  transform: translateY(-50%);
+  height: 20px;
+  background-color: var(--color--static-white-40);
+}
+
+.box__timer__time_block:last-of-type:after {
+  display: none;
+}
+
 /* ? FOOTER */
 footer {
   padding: 60px 8px;
