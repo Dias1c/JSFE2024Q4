@@ -1,5 +1,6 @@
 .gift_cards {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
 }
 
