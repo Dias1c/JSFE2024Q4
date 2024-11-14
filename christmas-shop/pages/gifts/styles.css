@@ -1,0 +1,28 @@
+@import url(../../styles/global.css);
+@import url(../../styles/header.css);
+@import url(../../styles/footer.css);
+
+
+section {
+  background-color: var(--color--primary);
+  background-image: url(../../assets/images/bg-garland.png);
+  background-position: top;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.section_gifts {}
+
+.section_gifts__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  color: var(--color--static-white);
+}
+
+.section_gifts__container__title {
+  max-width: var(--box-small-width);
+  text-align: center;
+}
