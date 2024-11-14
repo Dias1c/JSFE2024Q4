@@ -15,6 +15,7 @@ footer {
 
 .footer__container__contacts {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
 }
 
