@@ -1,12 +1,12 @@
-@import url(../../styles/global.css);
-@import url(../../styles/header.css);
-@import url(../../styles/footer.css);
-@import url(../../styles/gift-cards.css);
+@import url(../styles/global.css);
+@import url(../styles/header.css);
+@import url(../styles/footer.css);
+@import url(../styles/gift-cards.css);
 
 
 .section_gifts {
   background-color: var(--color--primary);
-  background-image: url(../../assets/images/bg-garland.png);
+  background-image: url(./assets/images/bg-garland.png);
   background-position: top;
   background-size: 100%;
   background-repeat: no-repeat;
