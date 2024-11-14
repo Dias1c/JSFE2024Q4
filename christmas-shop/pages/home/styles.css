@@ -285,7 +285,13 @@ header {
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  padding: 60px 0;
+  padding: 120px 0;
+}
+
+.section_cta__container__block_remains {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 /* ? TIMER */
