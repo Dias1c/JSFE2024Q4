@@ -35,6 +35,10 @@ nav * {
   list-style: none;
 }
 
+img {
+  display: block;
+}
+
 /* ? Text Styles */
 
 h1,
@@ -102,7 +106,7 @@ p {
   font-size: 24px;
   font-weight: 600;
   line-height: 1.52em;
-  letter-spacing: 16%;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
