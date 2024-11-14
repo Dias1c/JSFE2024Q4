@@ -1,5 +1,5 @@
-@import url(../assets/fonts/Montserrat/fonts.css);
-@import url(../assets/fonts/Allura/fonts.css);
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 
 :root {
   --container-width-max: 1276px;
@@ -72,9 +72,12 @@ a {
 }
 
 h1 {
+  font-family: Montserrat;
   font-size: 32px;
-  line-height: 150%;
+  line-height: 48px;
   letter-spacing: 0.18em;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
 }
 
 h2 {
