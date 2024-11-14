@@ -62,15 +62,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 600;
+  font-weight: 500;
   text-transform: uppercase;
-}
-
-p,
-span,
-button,
-a {
-  font-weight: 400;
 }
 
 h1 {
@@ -92,7 +85,6 @@ h3 {
   font-weight: 600;
   line-height: 24.32px;
   letter-spacing: 0.08em;
-
 }
 
 h4 {
