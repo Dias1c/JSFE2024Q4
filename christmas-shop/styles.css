@@ -41,7 +41,7 @@ section:last-of-type {
   padding: 60px 0;
   color: var(--color--static-white);
   text-align: center;
-  max-width: var(--box-small-width);
+  max-width: calc(var(--box-small-width) + 3px);
 }
 
 /* ? SECTION ABOUT */
