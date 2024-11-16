@@ -10,7 +10,6 @@
 
 ### TODO
 
-- letter spacing is strange
 - Resizeing?
 - Check ASSETS/Variables/requirements IN FIGMA
 - Interactive buttons with svg elements
