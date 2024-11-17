@@ -11,6 +11,6 @@
 ### TODO
 
 - Resizeing?
-- Check ASSETS/Variables/requirements IN FIGMA
-- Interactive buttons with svg elements
-- Check list in requirements
+- Filter
+- Modal
+- Menu
