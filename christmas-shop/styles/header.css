@@ -1,0 +1,63 @@
+@import url(global.css);
+
+header {
+  padding: 0 8px;
+  overflow: hidden;
+  max-width: var(--section-width-max);
+  margin: 0 auto;
+}
+
+.header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 12px 0;
+}
+
+.header__container__company {
+  padding: 8px 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header__container__company__logo {
+  height: 24px;
+  width: 24px;
+}
+
+.header__container__nav {
+  flex: 1;
+}
+
+.header__container__nav>nav {
+  margin-left: auto;
+}
+
+
+.header__container__nav ul {
+  display: flex;
+  justify-content: end;
+  gap: 8px;
+}
+
+.header__menu__button {
+  text-transform: uppercase;
+  padding: 12px 20px;
+  border-radius: 12px;
+
+  transition: 0.2s;
+}
+
+.header__menu__button:hover,
+.header__menu__button.active {
+  color: var(--color--primary);
+  background-color: var(--color--primary-10);
+}
+
+.header__menu__button.active {
+  cursor: default;
+}
