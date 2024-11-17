@@ -90,3 +90,13 @@ export const createHtmlComponentGifts = ({ gifts, pathToRootDir }) => {
 
   return giftsEl;
 };
+
+export const initialRenderGifts = ({ gifts }) => {
+  const replaceEl = document.getElementById("replace-gifts");
+  const giftsComponent = createHtmlComponentGifts({
+    gifts: gifts,
+    pathToRootDir: "../..",
+  });
+
+  replaceEl.replaceWith(giftsComponent);
+};
