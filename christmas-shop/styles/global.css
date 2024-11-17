@@ -42,7 +42,8 @@ nav * {
   list-style: none;
 }
 
-img {
+img,
+svg {
   display: block;
 }
 
@@ -191,17 +192,19 @@ button[disabled] {
   background: none;
   border: 1px solid var(--color--static-white);
   border-radius: var(--border-radius-default);
+  color: var(--color--static-white);
 
   padding: 16px;
 }
 
-.button--slider-arrow>img {
+.button--slider-arrow>svg {
   width: 22px;
   height: 22px;
 }
 
 .button--slider-arrow:hover {
   background: var(--color--static-white);
+  color: var(--color--primary);
 }
 
 .button--slider-arrow:disabled,
@@ -212,6 +215,7 @@ button[disabled] {
 .button--slider-arrow:disabled:hover,
 .button--slider-arrow[disabled]:hover {
   background: none;
+  color: var(--color--static-white);
 }
 
 
