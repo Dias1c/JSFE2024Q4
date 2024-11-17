@@ -67,18 +67,16 @@ footer {
 
 .footer__container__footer__social_link {
   padding: 8px;
+  color: var(--color--dark);
 }
 
-.footer__container__footer__social_link>img {
+.footer__container__footer__social_link>svg {
   width: 24px;
   height: 24px;
 }
 
-/* TODO: COLORS */
-.footer__container__footer__social_link:hover>img {
-  fill: var(--color--primary);
+.footer__container__footer__social_link:hover {
   color: var(--color--primary);
-  stroke: var(--color--primary);
 }
 
 .footer__container__footer__made_by:hover {
