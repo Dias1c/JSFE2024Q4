@@ -19,6 +19,12 @@ footer {
   gap: 12px;
 }
 
+@media all and (max-width: 768px) {
+  .footer__container__contacts {
+    flex-direction: column;
+  }
+}
+
 .footer__container__contacts__card {
   display: flex;
   flex-direction: column;
