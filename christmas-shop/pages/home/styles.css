@@ -53,7 +53,7 @@ section:last-of-type {
   display: flex;
 }
 
-@media all and (max-width: 380px) {
+@media all and (max-width: 600px) {
   .section_about__container {
     flex-direction: column;
   }
@@ -64,7 +64,6 @@ section:last-of-type {
 }
 
 .section_about__container>* {
-  /* flex: 1; */
   width: 50%;
 }
 
@@ -77,6 +76,12 @@ section:last-of-type {
   .section_about__container>*:first-child {
     padding-top: 46px;
     padding-bottom: 46px;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .section_about__container>* {
+    width: auto;
   }
 }
 
