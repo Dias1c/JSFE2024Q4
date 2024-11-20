@@ -53,6 +53,12 @@ section:last-of-type {
   display: flex;
 }
 
+@media all and (max-width: 380px) {
+  .section_about__container {
+    flex-direction: column;
+  }
+}
+
 .section_about__container .typography--caption {
   color: var(--color--primary);
 }
@@ -66,12 +72,33 @@ section:last-of-type {
   padding: 100px 60px;
 }
 
+
+@media all and (max-width: 786px) {
+  .section_about__container>*:first-child {
+    padding-top: 46px;
+    padding-bottom: 46px;
+  }
+}
+
+@media all and (max-width: 380px) {
+  .section_about__container>* {
+    width: auto;
+  }
+
+  .section_about__container>*:first-child {
+    padding: 0 20px;
+  }
+}
+
+
 .section_about__container>*:last-child {
   border-radius: var(--border-radius-default);
 
   background-image: url(../../assets/images/santa.png);
   background-position: center;
   background-size: cover;
+
+  min-height: 528px;
 }
 
 .section_about__info {
