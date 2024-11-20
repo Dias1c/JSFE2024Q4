@@ -33,8 +33,10 @@ header {
   flex: 1;
 }
 
-.header__container__nav>nav {
-  margin-left: auto;
+@media all and (max-width: 768px) {
+  .header__container__nav {
+    display: none;
+  }
 }
 
 
@@ -60,4 +62,61 @@ header {
 
 .header__menu__button.active {
   cursor: default;
+}
+
+
+
+.header__container__burger_button {
+  display: none;
+}
+
+@media all and (max-width: 768px) {
+
+  /* TODO: add class "active" to change state */
+  .header__container__burger_button {
+    display: block;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background: none;
+  }
+
+  .header__container__burger_button::before,
+  .header__container__burger_button::after {
+    display: block;
+    content: '';
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+
+    width: 20px;
+    height: 1px;
+    border-radius: 0.5px;
+    background-color: var(--color--dark);
+
+    transition: 0.5s;
+  }
+
+  .header__container__burger_button::before {
+    top: calc(50% - 5px);
+  }
+
+  .header__container__burger_button::after {
+    top: calc(50% + 4px);
+  }
+
+  .header__container__burger_button.active::before,
+  .header__container__burger_button.active::after {
+    top: 50%;
+  }
+
+  .header__container__burger_button.active::before {
+    transform: translate(-50%, 50%) rotate(45deg);
+  }
+
+  .header__container__burger_button.active::after {
+    transform: translate(-50%, 50%) rotate(-45deg);
+  }
 }
