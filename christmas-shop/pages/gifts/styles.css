@@ -32,6 +32,12 @@
   gap: 8px;
 }
 
+@media all and (max-width: 380px) {
+  .section_gifts__container__tabs {
+    gap: 0;
+  }
+}
+
 .section_gifts__container__tabs__item {
   color: var(--color--static-white);
   padding: 12px 20px;
@@ -49,4 +55,10 @@
 
 .section_gifts__container__tabs__item.active {
   cursor: default;
+}
+
+@media all and (max-width: 380px) {
+  .section_gifts__container__tabs__item {
+    padding: 12px 8px;
+  }
 }
