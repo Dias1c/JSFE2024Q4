@@ -91,12 +91,14 @@ export const createHtmlComponentGifts = ({ gifts, pathToRootDir }) => {
   return giftsEl;
 };
 
-export const initialRenderGifts = ({ gifts }) => {
-  const replaceEl = document.getElementById("replace-gifts");
+export const reRenderGifts = ({ gifts, elementId }) => {
+  const replaceEl = document.getElementById(elementId);
+
   const giftsComponent = createHtmlComponentGifts({
     gifts: gifts,
     pathToRootDir: "../..",
   });
+  giftsComponent.id = elementId;
 
   replaceEl.replaceWith(giftsComponent);
 };
