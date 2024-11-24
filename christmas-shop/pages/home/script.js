@@ -25,11 +25,23 @@ const elTimerHours = document.getElementById("new_year_timer_hours");
 const elTimerMinutes = document.getElementById("new_year_timer_minutes");
 const elTimerSeconds = document.getElementById("new_year_timer_seconds");
 
-setInterval(() => {
-  const { days, hours, minutes, seconds } = getNewYearRemains({ year: "2025" });
+let timerInterval;
 
-  if (elTimerDays) elTimerDays.innerText = days;
-  if (elTimerHours) elTimerHours.innerText = hours;
-  if (elTimerMinutes) elTimerMinutes.innerText = minutes;
-  if (elTimerSeconds) elTimerSeconds.innerText = seconds;
+timerInterval = setInterval(() => {
+  const { days, hours, minutes, seconds, isFinished } = getNewYearRemains({
+    year: "2025",
+  });
+
+  const list = [
+    { value: days, elTimer: elTimerDays },
+    { value: hours, elTimer: elTimerHours },
+    { value: minutes, elTimer: elTimerMinutes },
+    { value: seconds, elTimer: elTimerSeconds },
+  ];
+
+  for (const el of list) {
+    if (el.elTimer) el.elTimer.innerText = el.value;
+  }
+
+  if (isFinished) clearInterval(timerInterval);
 }, 1000);

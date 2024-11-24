@@ -22,5 +22,7 @@ export const getNewYearRemains = ({ year }) => {
   let seconds = Math.floor(remains / MS_SECOND);
   if (seconds < 0) seconds = 0;
 
-  return { days, hours, minutes, seconds };
+  const isFinished = 0 === days + hours + minutes + seconds;
+
+  return { days, hours, minutes, seconds, isFinished };
 };
