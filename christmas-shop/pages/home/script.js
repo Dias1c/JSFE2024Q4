@@ -45,3 +45,50 @@ timerInterval = setInterval(() => {
 
   if (isFinished) clearInterval(timerInterval);
 }, 1000);
+
+// ? SLIDER
+let maxClicksCount = 3;
+let step = 0;
+
+const elSlider = document.getElementById("slider");
+const elSliderBtnLeft = document.getElementById("slider-button-left");
+const elSliderBtnRight = document.getElementById("slider-button-right");
+
+function slideSlider({ stepValue }) {
+  if (step >= maxClicksCount) step = maxClicksCount;
+  step += stepValue;
+  const stepWidth =
+    (elSlider.scrollWidth - elSlider.clientWidth) / maxClicksCount;
+  elSlider.style.transform = `translateX(-${stepWidth * step}px)`;
+
+  if (maxClicksCount <= step) {
+    elSliderBtnRight.disabled = true;
+  } else {
+    elSliderBtnRight.disabled = false;
+  }
+
+  if (step <= 0) {
+    elSliderBtnLeft.disabled = true;
+  } else {
+    elSliderBtnLeft.disabled = false;
+  }
+}
+
+const observerMaxWidth = window.matchMedia("(max-width: 768px)");
+
+observerMaxWidth.addEventListener("change", () => {
+  if (observerMaxWidth.matches) {
+    maxClicksCount = 6;
+  } else {
+    maxClicksCount = 3;
+  }
+  slideSlider({ stepValue: 0 });
+});
+
+elSliderBtnRight.addEventListener("click", () =>
+  slideSlider({ maxClicksCount: 3, stepValue: 1 })
+);
+
+elSliderBtnLeft.addEventListener("click", () =>
+  slideSlider({ maxClicksCount: 3, stepValue: -1 })
+);
