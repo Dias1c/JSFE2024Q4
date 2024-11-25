@@ -182,9 +182,11 @@ button[disabled] {
   color: var(--color--static-white);
 }
 
-.button--primary:hover {
-  background-color: var(--color--static-white);
-  color: var(--color--dark);
+@media (hover: hover) {
+  .button--primary:hover {
+    background-color: var(--color--static-white);
+    color: var(--color--dark);
+  }
 }
 
 
@@ -203,9 +205,12 @@ button[disabled] {
   height: 22px;
 }
 
-.button--slider-arrow:hover {
-  background: var(--color--static-white);
-  color: var(--color--primary);
+@media (hover: hover) {
+
+  .button--slider-arrow:hover {
+    background: var(--color--static-white);
+    color: var(--color--primary);
+  }
 }
 
 .button--slider-arrow:disabled,
@@ -213,10 +218,13 @@ button[disabled] {
   opacity: 0.4;
 }
 
-.button--slider-arrow:disabled:hover,
-.button--slider-arrow[disabled]:hover {
-  background: none;
-  color: var(--color--static-white);
+@media (hover: hover) {
+
+  .button--slider-arrow:disabled:hover,
+  .button--slider-arrow[disabled]:hover {
+    background: none;
+    color: var(--color--static-white);
+  }
 }
 
 

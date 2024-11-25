@@ -47,10 +47,14 @@
   transition: 0.2s;
 }
 
-
-.section_gifts__container__tabs__item:hover,
 .section_gifts__container__tabs__item.active {
   background-color: var(--color--static-white-20);
+}
+
+@media (hover: hover) {
+  .section_gifts__container__tabs__item:hover {
+    background-color: var(--color--static-white-20);
+  }
 }
 
 .section_gifts__container__tabs__item.active {

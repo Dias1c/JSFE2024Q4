@@ -48,8 +48,10 @@ footer {
   transition: 0.2s;
 }
 
-.footer__container__contacts__card:hover * {
-  color: var(--color--primary);
+@media (hover: hover) {
+  .footer__container__contacts__card:hover * {
+    color: var(--color--primary);
+  }
 }
 
 .footer__container__contacts__card__icon {
@@ -81,10 +83,12 @@ footer {
   height: 24px;
 }
 
-.footer__container__footer__social_link:hover {
-  color: var(--color--primary);
-}
+@media (hover: hover) {
+  .footer__container__footer__social_link:hover {
+    color: var(--color--primary);
+  }
 
-.footer__container__footer__made_by:hover {
-  color: var(--color--primary);
+  .footer__container__footer__made_by:hover {
+    color: var(--color--primary);
+  }
 }
