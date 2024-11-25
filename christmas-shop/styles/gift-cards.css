@@ -26,8 +26,10 @@
   transition: 0.2s;
 }
 
-.gift_card:hover h3 {
-  color: var(--color--primary);
+@media (hover: hover) {
+  .gift_card:hover h3 {
+    color: var(--color--primary);
+  }
 }
 
 .gift_card__image {

@@ -54,10 +54,16 @@ header {
   transition: 0.2s;
 }
 
-.header__menu__button:hover,
 .header__menu__button.active {
   color: var(--color--primary);
   background-color: var(--color--primary-10);
+}
+
+@media (hover: hover) {
+  .header__menu__button:hover {
+    color: var(--color--primary);
+    background-color: var(--color--primary-10);
+  }
 }
 
 .header__menu__button.active {
