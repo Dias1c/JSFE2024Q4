@@ -1,4 +1,5 @@
 import { initializeBurgerMenuHandlers } from "./../../scripts/burger-menu.js";
+import { initializeBackToTopButton } from "./../../scripts/back-to-top.js";
 import { reRenderGifts } from "./../../scripts/gifts.js";
 
 let gifts = [];
@@ -59,4 +60,9 @@ initializeBurgerMenuHandlers({
   elementButtonBurger: document.getElementById("burger-button"),
   elementSectionMenu: document.getElementById("burger-menu"),
   elementsMenuItem: document.querySelectorAll(".block_burger_menu__button"),
+});
+
+// ? Back To Top
+initializeBackToTopButton({
+  id: "button-back-to-top",
 });
