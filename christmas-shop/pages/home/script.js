@@ -83,16 +83,16 @@ observerMaxWidth.addEventListener("change", () => {
   } else {
     maxClicksCount = 3;
   }
+});
+
+window.addEventListener("resize", () => {
+  step = 0;
   slideSlider({ stepValue: 0 });
 });
 
-elSliderBtnRight.addEventListener("click", () =>
-  slideSlider({ maxClicksCount: 3, stepValue: 1 })
-);
+elSliderBtnRight.addEventListener("click", () => slideSlider({ stepValue: 1 }));
 
-elSliderBtnLeft.addEventListener("click", () =>
-  slideSlider({ maxClicksCount: 3, stepValue: -1 })
-);
+elSliderBtnLeft.addEventListener("click", () => slideSlider({ stepValue: -1 }));
 
 // ? BurgerMenu
 initializeBurgerMenuHandlers({
