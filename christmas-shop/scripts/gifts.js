@@ -22,6 +22,85 @@ const getGiftCategoryProps = (category) => {
   );
 };
 
+const createHtmlComponentGiftModal = ({ gift, pathToRootDir }) => {
+  const createInnerHTMLGiftStat = ({ name, value }) => {
+    const snows = parseInt(value);
+
+    let snowflakes = ``;
+    for (let i = 100; i <= 500; i += 100) {
+      if (i <= snows) {
+        snowflakes += `<img src="${pathToRootDir}/assets/icons/icon-snowflake-red.svg" alt="snowflake-red">`;
+        continue;
+      }
+      snowflakes += `<img src="${pathToRootDir}/assets/icons/icon-snowflake-red.svg" alt="snowflake-red" style="opacity: 0.1">`;
+    }
+
+    return `<div class="dialog_gift__details__secondary__property">
+        <p class="dialog_gift__details__secondary__property__name">${name}</p>
+        <p class="dialog_gift__details__secondary__property__score">${value}</p>
+        <div class="dialog_gift__details__secondary__property__snowflakes">
+          ${snowflakes}
+        </div>
+      </div>`;
+  };
+
+  const { tagClass, imageAbsolutPath } = getGiftCategoryProps(gift.category);
+
+  const dialog = document.createElement("dialog");
+  dialog.classList.add("dialog_gift");
+
+  dialog.addEventListener("click", (e) => {
+    const closeDialog = () => {
+      dialog.close();
+      dialog.remove();
+      document.body.style.overflowY = "auto";
+    };
+
+    if (e.target && e.target.classList.contains("dialog_gift")) {
+      var rect = dialog.getBoundingClientRect();
+      if (
+        rect.top > e.clientY ||
+        e.clientY > rect.top + rect.height ||
+        rect.left > e.clientX ||
+        e.clientX > rect.left + rect.width
+      ) {
+        closeDialog();
+      }
+    }
+
+    if (e.target && e.target.classList.contains("dialog_gift__close")) {
+      closeDialog();
+    }
+  });
+
+  dialog.innerHTML = `<img class="dialog_gift__img" alt="gift" src="${pathToRootDir}${imageAbsolutPath}" />
+<button class="dialog_gift__close"></button>
+<div class="dialog_gift__details">
+  <div class="dialog_gift__details__main">
+    <h4 class="${tagClass}">${gift.category}</h4>
+    <h3>${gift.name}</h3>
+    <p>${gift.description}</p>
+  </div>
+  <div class="dialog_gift__details__secondary">
+    <h4>Adds superpowers to:</h4>
+    <div>
+      ${createInnerHTMLGiftStat({ name: "Live", value: gift.superpowers.live })}
+      ${createInnerHTMLGiftStat({
+        name: "Create",
+        value: gift.superpowers.create,
+      })}
+      ${createInnerHTMLGiftStat({ name: "Love", value: gift.superpowers.love })}
+      ${createInnerHTMLGiftStat({
+        name: "Dream",
+        value: gift.superpowers.dream,
+      })}
+    </div>
+  </div>
+</div>`;
+
+  return dialog;
+};
+
 /**
  * @param {*} param0
  *
@@ -36,38 +115,48 @@ const getGiftCategoryProps = (category) => {
  * </div>
  * ```
  */
-export const createHtmlComponentGift = ({ category, title, pathToRootDir }) => {
+export const createHtmlComponentGift = ({ gift, pathToRootDir }) => {
   if (!pathToRootDir) throw new Error("pathToRootDir is undefined");
+
+  const { category, name } = gift;
   if (!category) throw new Error("category is undefined");
 
   const categoryProps = getGiftCategoryProps(category);
   if (!categoryProps) throw new Error("categoryProps is undefined");
 
-  const gift = document.createElement("div");
-  gift.classList.add("gift_card");
+  const elGift = document.createElement("div");
+  elGift.classList.add("gift_card");
 
-  const img = document.createElement("img");
-  img.classList.add("gift_card__image");
-  img.src = `${pathToRootDir}${categoryProps.imageAbsolutPath}`;
-  img.alt = category;
+  const elImg = document.createElement("img");
+  elImg.classList.add("gift_card__image");
+  elImg.src = `${pathToRootDir}${categoryProps.imageAbsolutPath}`;
+  elImg.alt = category;
 
-  const giftContent = document.createElement("div");
-  giftContent.classList.add("gift_card__content");
+  const elGiftContent = document.createElement("div");
+  elGiftContent.classList.add("gift_card__content");
 
-  const h4 = document.createElement("h4");
-  h4.classList.add(categoryProps.tagClass);
-  h4.innerText = category;
+  const elH4 = document.createElement("h4");
+  elH4.classList.add(categoryProps.tagClass);
+  elH4.innerText = category;
 
-  const h3 = document.createElement("h3");
-  h3.innerText = title;
+  const elH3 = document.createElement("h3");
+  elH3.innerText = name;
 
   // ? Combine components
-  gift.appendChild(img);
-  gift.appendChild(giftContent);
-  giftContent.appendChild(h4);
-  giftContent.appendChild(h3);
+  elGift.appendChild(elImg);
+  elGift.appendChild(elGiftContent);
+  elGiftContent.appendChild(elH4);
+  elGiftContent.appendChild(elH3);
 
-  return gift;
+  // ? Events
+  elGift.addEventListener("click", () => {
+    const elModal = createHtmlComponentGiftModal({ gift, pathToRootDir });
+    document.body.appendChild(elModal);
+    elModal.showModal();
+    document.body.style.overflowY = "hidden";
+  });
+
+  return elGift;
 };
 
 export const createHtmlComponentGifts = ({ gifts, pathToRootDir }) => {
@@ -78,10 +167,8 @@ export const createHtmlComponentGifts = ({ gifts, pathToRootDir }) => {
   giftsEl.classList.add("gift_cards");
 
   for (let i = 0; i < gifts.length; i++) {
-    const gift = gifts[i];
     const giftEl = createHtmlComponentGift({
-      category: gift.category,
-      title: gift.name,
+      gift: gifts[i],
       pathToRootDir,
     });
 
