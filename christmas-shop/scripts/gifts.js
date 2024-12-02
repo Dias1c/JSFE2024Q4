@@ -73,7 +73,10 @@ const createHtmlComponentGiftModal = ({ gift, pathToRootDir }) => {
     }
   });
 
-  dialog.innerHTML = `<img class="dialog_gift__img" alt="gift" src="${pathToRootDir}${imageAbsolutPath}" />
+  dialog.innerHTML = `
+<div class="dialog_gift__img_block">
+  <img class="dialog_gift__img" alt="gift" src="${pathToRootDir}${imageAbsolutPath}" />
+</div>
 <button class="dialog_gift__close"></button>
 <div class="dialog_gift__details">
   <div class="dialog_gift__details__main">

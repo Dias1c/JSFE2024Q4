@@ -105,12 +105,17 @@
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-
+.dialog_gift__img_block {
+  height: 230px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 .dialog_gift__img {
-  pointer-events: none;
-  height: 230px;
+  width: 100%;
   margin: 0 auto;
+  pointer-events: none;
 }
 
 .dialog_gift__details {
