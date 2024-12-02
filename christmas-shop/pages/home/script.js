@@ -1,3 +1,4 @@
+import { initializeBurgerMenuHandlers } from "./../../scripts/burger-menu.js";
 import { reRenderGifts } from "./../../scripts/gifts.js";
 import { getNewYearRemains } from "./../../scripts/new-year-timer.js";
 
@@ -92,3 +93,10 @@ elSliderBtnRight.addEventListener("click", () =>
 elSliderBtnLeft.addEventListener("click", () =>
   slideSlider({ maxClicksCount: 3, stepValue: -1 })
 );
+
+// ? BurgerMenu
+initializeBurgerMenuHandlers({
+  elementButtonBurger: document.getElementById("burger-button"),
+  elementSectionMenu: document.getElementById("burger-menu"),
+  elementsMenuItem: document.querySelectorAll(".block_burger_menu__button"),
+});

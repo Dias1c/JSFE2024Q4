@@ -1,3 +1,4 @@
+import { initializeBurgerMenuHandlers } from "./../../scripts/burger-menu.js";
 import { reRenderGifts } from "./../../scripts/gifts.js";
 
 let gifts = [];
@@ -51,4 +52,11 @@ giftTabBtns.forEach((btnTab) => {
   };
 
   btnTab.addEventListener("click", onClick);
+});
+
+// ? BurgerMenu
+initializeBurgerMenuHandlers({
+  elementButtonBurger: document.getElementById("burger-button"),
+  elementSectionMenu: document.getElementById("burger-menu"),
+  elementsMenuItem: document.querySelectorAll(".block_burger_menu__button"),
 });
