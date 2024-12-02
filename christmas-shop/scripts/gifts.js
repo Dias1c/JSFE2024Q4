@@ -35,10 +35,10 @@ const createHtmlComponentGiftModal = ({ gift, pathToRootDir }) => {
       snowflakes += `<img src="${pathToRootDir}/assets/icons/icon-snowflake-red.svg" alt="snowflake-red" style="opacity: 0.1">`;
     }
 
-    return `<div class="dialog_gift__details__secondary__property">
-        <p class="dialog_gift__details__secondary__property__name">${name}</p>
-        <p class="dialog_gift__details__secondary__property__score">${value}</p>
-        <div class="dialog_gift__details__secondary__property__snowflakes">
+    return `<div class="modal_gift__details__secondary__property">
+        <p class="modal_gift__details__secondary__property__name">${name}</p>
+        <p class="modal_gift__details__secondary__property__score">${value}</p>
+        <div class="modal_gift__details__secondary__property__snowflakes">
           ${snowflakes}
         </div>
       </div>`;
@@ -57,34 +57,27 @@ const createHtmlComponentGiftModal = ({ gift, pathToRootDir }) => {
     };
 
     if (e.target && e.target.classList.contains("dialog_gift")) {
-      var rect = dialog.getBoundingClientRect();
-      if (
-        rect.top > e.clientY ||
-        e.clientY > rect.top + rect.height ||
-        rect.left > e.clientX ||
-        e.clientX > rect.left + rect.width
-      ) {
-        closeDialog();
-      }
+      closeDialog();
     }
 
-    if (e.target && e.target.classList.contains("dialog_gift__close")) {
+    if (e.target && e.target.classList.contains("modal_gift__close")) {
       closeDialog();
     }
   });
 
   dialog.innerHTML = `
-<div class="dialog_gift__img_block">
-  <img class="dialog_gift__img" alt="gift" src="${pathToRootDir}${imageAbsolutPath}" />
+<div class="modal_gift">
+<div class="modal_gift__img_block">
+  <img class="modal_gift__img" alt="gift" src="${pathToRootDir}${imageAbsolutPath}" />
 </div>
-<button class="dialog_gift__close"></button>
-<div class="dialog_gift__details">
-  <div class="dialog_gift__details__main">
+<button class="modal_gift__close"></button>
+<div class="modal_gift__details">
+  <div class="modal_gift__details__main">
     <h4 class="${tagClass}">${gift.category}</h4>
     <h3>${gift.name}</h3>
     <p>${gift.description}</p>
   </div>
-  <div class="dialog_gift__details__secondary">
+  <div class="modal_gift__details__secondary">
     <h4>Adds superpowers to:</h4>
     <div>
       ${createInnerHTMLGiftStat({ name: "Live", value: gift.superpowers.live })}
@@ -99,6 +92,7 @@ const createHtmlComponentGiftModal = ({ gift, pathToRootDir }) => {
       })}
     </div>
   </div>
+</div>
 </div>`;
 
   return dialog;

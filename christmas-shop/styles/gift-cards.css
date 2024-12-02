@@ -54,16 +54,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
-  border: none;
   background: none;
-  border-radius: var(--border-radius-default);
-
-  max-width: 400px;
-  width: calc(100vw - 16px);
-  overflow: hidden;
-
-  background-color: var(--color--content-background);
+  border: none;
 }
 
 .dialog_gift:focus {
@@ -74,7 +66,18 @@
   background-color: var(--color--overlay);
 }
 
-.dialog_gift__close {
+.modal_gift {
+  border-radius: var(--border-radius-default);
+
+  max-width: 400px;
+  width: calc(100vw - 16px);
+  overflow: hidden;
+
+  background-color: var(--color--content-background);
+}
+
+
+.modal_gift__close {
   position: absolute;
   top: 8px;
   right: 8px;
@@ -84,8 +87,8 @@
   background: none;
 }
 
-.dialog_gift__close::before,
-.dialog_gift__close::after {
+.modal_gift__close::before,
+.modal_gift__close::after {
   content: "";
   position: absolute;
   display: block;
@@ -97,28 +100,28 @@
   border-radius: 1px;
 }
 
-.dialog_gift__close::before {
+.modal_gift__close::before {
   transform: translate(-50%, -50%) rotate(45deg);
 }
 
-.dialog_gift__close::after {
+.modal_gift__close::after {
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-.dialog_gift__img_block {
+.modal_gift__img_block {
   height: 230px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.dialog_gift__img {
+.modal_gift__img {
   width: 100%;
   margin: 0 auto;
   pointer-events: none;
 }
 
-.dialog_gift__details {
+.modal_gift__details {
   background-color: var(--color--static-white);
   border-radius: var(--border-radius-default);
   padding: 20px;
@@ -128,34 +131,34 @@
   gap: 20px;
 }
 
-.dialog_gift__details__main {
+.modal_gift__details__main {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.dialog_gift__details__secondary {
+.modal_gift__details__secondary {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.dialog_gift__details__secondary__property {
+.modal_gift__details__secondary__property {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.dialog_gift__details__secondary__property__name {
+.modal_gift__details__secondary__property__name {
   flex: 1;
 }
 
-.dialog_gift__details__secondary__property__snowflakes {
+.modal_gift__details__secondary__property__snowflakes {
   display: flex;
   gap: 8px;
 }
 
-.dialog_gift__details__secondary__property__snowflakes>img {
+.modal_gift__details__secondary__property__snowflakes>img {
   height: 16px;
   width: 16px;
 }
