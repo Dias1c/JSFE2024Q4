@@ -4,7 +4,7 @@ const MS_HOUR = 60 * MS_MINUTE;
 const MS_DAY = 24 * MS_HOUR;
 
 export const getNewYearRemains = ({ year }) => {
-  const target = new Date(`${year}-01-01T00:00`);
+  const target = new Date(`${year}-01-01T00:00:00.000Z`);
   let remains = target - Date.now();
 
   let days = Math.floor(remains / MS_DAY);
