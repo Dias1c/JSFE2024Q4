@@ -135,7 +135,8 @@ header {
   width: 100vw;
 
   background-color: var(--color--static-white);
-  display: flex;
+
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -148,6 +149,12 @@ header {
 @supports (height: 100dvh) {
   .block_burger_menu__nav {
     height: 100dvh;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .block_burger_menu__nav {
+    display: flex;
   }
 }
 
