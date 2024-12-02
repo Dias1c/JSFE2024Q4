@@ -76,14 +76,16 @@ function slideSlider({ stepValue }) {
 }
 
 const observerMaxWidth = window.matchMedia("(max-width: 768px)");
-
-observerMaxWidth.addEventListener("change", () => {
+const handleClicksCount = () => {
   if (observerMaxWidth.matches) {
     maxClicksCount = 6;
   } else {
     maxClicksCount = 3;
   }
-});
+};
+handleClicksCount();
+
+observerMaxWidth.addEventListener("change", handleClicksCount);
 
 window.addEventListener("resize", () => {
   step = 0;
