@@ -130,6 +130,7 @@ header {
 .block_burger_menu__nav {
   position: absolute;
   top: 64px;
+  padding-bottom: 64px;
   transform: translate(100%);
   height: 100vh;
   width: 100vw;
