@@ -1,13 +1,13 @@
 const openBurgerMenu = ({ elementButtonBurger, elementSectionMenu }) => {
   elementButtonBurger.classList.add("active");
   elementSectionMenu.classList.add("active");
-  document.body.style.overflow = "hidden";
+  document.body.style.overflowY = "hidden";
 };
 
 const closeBurgerMenu = ({ elementButtonBurger, elementSectionMenu }) => {
   elementButtonBurger.classList.remove("active");
   elementSectionMenu.classList.remove("active");
-  document.body.style.overflow = "auto";
+  document.body.style.overflowY = "auto";
 };
 
 const handleClickBurgerButton = ({
