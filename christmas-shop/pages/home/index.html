@@ -36,9 +36,25 @@
         </ul>
       </nav>
 
-      <button class="header__container__burger_button"></button>
+      <button class="header__container__burger_button" id="burger-button"></button>
     </div>
   </header>
+  <nav class="block_burger_menu__nav" id="burger-menu">
+    <ul>
+      <li>
+        <a class="block_burger_menu__button typography--action-large" href="../gifts/index.html">gifts</a>
+      </li>
+      <li>
+        <a class="block_burger_menu__button typography--action-large" href="#about">about</a>
+      </li>
+      <li>
+        <a class="block_burger_menu__button typography--action-large" href="#best">best</a>
+      </li>
+      <li>
+        <a class="block_burger_menu__button typography--action-large" href="#contacts">contacts</a>
+      </li>
+    </ul>
+  </nav>
 
   <!-- ? SECTION HERO -->
   <section class="section_hero">
@@ -75,25 +91,27 @@
         <h2>in the new 2025</h2>
       </div>
 
-      <div class="section_slider__container__main">
+      <div class="section_slider__container__main" id="slider">
         <span class="typography--slider-text">live</span>
         <img alt="snowman" src="../../assets/images/snowman.png">
         <span class="typography--slider-text">create</span>
         <img alt="christmas trees" src="../../assets/images/christmas-trees.png">
         <span class="typography--slider-text">love</span>
         <img alt="christmas tree ball" src="../../assets/images/christmas-tree-ball.png">
+        <span class="typography--slider-text">dream</span>
+        <img alt="christmas tree ball" src="../../assets/images/fairytale-house.png">
       </div>
 
       <div class="section_slider__container__footer">
         <div class="section_slider__container__footer__controllers">
-          <button class="button--slider-arrow" disabled>
+          <button class="button--slider-arrow" id="slider-button-left" disabled>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
               style="stroke: currentColor;">
               <path d="M18.5 12H6M6 12L12 6M6 12L12 18" stroke="currentColor" stroke-linecap="round"
                 stroke-linejoin="round" />
             </svg>
           </button>
-          <button class="button--slider-arrow">
+          <button class="button--slider-arrow" id="slider-button-right">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M6 12H18.5M18.5 12L12.5 6M18.5 12L12.5 18" stroke="currentColor" stroke-linecap="round"
                 stroke-linejoin="round" />
@@ -126,19 +144,19 @@
         <span class="typography--caption">The New Year is Coming Soon...</span>
         <div class="box__timer">
           <div class="box__timer__time_block">
-            <h2>47</h2>
+            <h2 id="new_year_timer_days">47</h2>
             <h4>days</h4>
           </div>
           <div class="box__timer__time_block">
-            <h2>5</h2>
+            <h2 id="new_year_timer_hours">5</h2>
             <h4>hours</h4>
           </div>
           <div class="box__timer__time_block">
-            <h2>34</h2>
+            <h2 id="new_year_timer_minutes">34</h2>
             <h4>minutes</h4>
           </div>
           <div class="box__timer__time_block">
-            <h2>12</h2>
+            <h2 id="new_year_timer_seconds">12</h2>
             <h4>seconds</h4>
           </div>
         </div>

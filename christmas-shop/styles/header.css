@@ -1,6 +1,8 @@
 @import url(global.css);
 
 header {
+  position: relative;
+  z-index: 1;
   padding: 0 8px;
   overflow: hidden;
   max-width: var(--section-width-max);
@@ -125,4 +127,61 @@ header {
   .header__container__burger_button.active::after {
     transform: translate(-50%, 50%) rotate(-45deg);
   }
+}
+
+.block_burger_menu__nav {
+  position: fixed;
+  top: 0;
+  transform: translate(100%);
+  padding-bottom: 64px;
+  /* ? Header остается на месте, и после малого скролла если нажать на кнопку burger то будет щель. Эта высота ее и компенсирует.  */
+  height: calc(100vh + 64px);
+  width: 100vw;
+
+  background-color: var(--color--static-white);
+
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  transition: right 0.2s, transform 0.2s;
+}
+
+@supports (height: 100dvh) {
+  .block_burger_menu__nav {
+    height: calc(100dvh + 64px);
+  }
+}
+
+@media all and (max-width: 768px) {
+  .block_burger_menu__nav {
+    display: flex;
+  }
+}
+
+.block_burger_menu__nav.active {
+  transform: none;
+}
+
+.block_burger_menu__nav ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.block_burger_menu__nav ul li {
+  display: block;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+}
+
+.block_burger_menu__nav .block_burger_menu__button {
+  display: block;
+  padding: 12px 20px;
 }

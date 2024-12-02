@@ -140,6 +140,7 @@ section:last-of-type {
   display: flex;
   align-items: center;
   gap: 20px;
+  transition: 0.5s;
 }
 
 .section_slider__container__main>img {

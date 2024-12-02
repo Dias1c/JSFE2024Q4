@@ -36,9 +36,25 @@
         </ul>
       </nav>
 
-      <button class="header__container__burger_button"></button>
+      <button class="header__container__burger_button" id="burger-button"></button>
     </div>
   </header>
+  <nav class="block_burger_menu__nav" id="burger-menu">
+    <ul>
+      <li>
+        <a class="block_burger_menu__button typography--action-large">gifts</a>
+      </li>
+      <li>
+        <a class="block_burger_menu__button typography--action-large" href="../home/index.html#about">about</a>
+      </li>
+      <li>
+        <a class="block_burger_menu__button typography--action-large" href="../home/index.html#best">best</a>
+      </li>
+      <li>
+        <a class="block_burger_menu__button typography--action-large" href="#contacts">contacts</a>
+      </li>
+    </ul>
+  </nav>
 
   <!-- ? SECTION -->
 
@@ -49,16 +65,16 @@
       </div>
 
       <div class="section_gifts__container__tabs">
-        <button class="section_gifts__container__tabs__item active">
+        <button class="section_gifts__container__tabs__item active" data-category="all">
           <span class="typography--action-small">all</span>
         </button>
-        <button class="section_gifts__container__tabs__item">
+        <button class="section_gifts__container__tabs__item" data-category="for work">
           <span class="typography--action-small">for work</span>
         </button>
-        <button class="section_gifts__container__tabs__item">
+        <button class="section_gifts__container__tabs__item" data-category="for health">
           <span class="typography--action-small">for health</span>
         </button>
-        <button class="section_gifts__container__tabs__item">
+        <button class="section_gifts__container__tabs__item" data-category="for harmony">
           <span class="typography--action-small">for harmony</span>
         </button>
       </div>

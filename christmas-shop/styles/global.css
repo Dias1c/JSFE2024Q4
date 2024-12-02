@@ -228,16 +228,6 @@ button[disabled] {
 }
 
 
-/* BUTTON BACK TO TOP */
-
-.button--back-to-top {
-  border: 1px solid var(--color--primary);
-  border-radius: 100%;
-  padding: 22px;
-  background-color: var(--color--static-white);
-}
-
-
 /* SECTIONS */
 section {
   padding: 60px 8px;
