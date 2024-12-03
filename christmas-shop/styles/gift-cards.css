@@ -56,6 +56,14 @@
   transform: translate(-50%, -50%);
   background: none;
   border: none;
+
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  max-width: calc(100vw - 16px);
+  width: 100%;
 }
 
 .dialog_gift:focus {
@@ -67,10 +75,11 @@
 }
 
 .modal_gift {
+  position: relative;
   border-radius: var(--border-radius-default);
 
   max-width: 400px;
-  width: calc(100vw - 16px);
+  width: 100%;
   overflow: hidden;
 
   background-color: var(--color--content-background);
