@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simon Says</title>
+
+  <script src="./src/main.js" type="module"></script>
+  <script nomodule>
+    window.addEventListener('load', () => {
+      const p = document.createElement('p')
+      p.innerText = 'Module scripts are not allowed, please update your browser vesrion'
+      document.body.appendChild(p)
+    })
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
