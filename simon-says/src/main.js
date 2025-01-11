@@ -7,9 +7,9 @@ const game = {
 };
 
 const mapDifficulty = {
-  easy: "Easy",
-  medium: "Medium",
-  hard: "Hard",
+  easy: "easy",
+  medium: "medium",
+  hard: "hard",
 };
 
 const mapLevels = {
@@ -23,9 +23,20 @@ const mapLevels = {
 const elSection = document.createElement("section");
 document.body.appendChild(elSection);
 
-const elParagraphDifficulty = document.createElement("span");
-elParagraphDifficulty.innerText = `Difficulty: ${game.difficulty}`;
-elSection.appendChild(elParagraphDifficulty);
+const elSelectDifficulty = document.createElement("select");
+Object.values(mapDifficulty).forEach((difficulty) => {
+  const elOption = document.createElement("option");
+  elOption.innerText = difficulty;
+  elSelectDifficulty.appendChild(elOption);
+});
+
+const elFieldsetDifficulty = document.createElement("fieldset");
+const elLegendDifficulty = document.createElement("legend");
+elLegendDifficulty.innerText = "Difficulty";
+elFieldsetDifficulty.appendChild(elLegendDifficulty);
+elFieldsetDifficulty.appendChild(elSelectDifficulty);
+
+elSection.appendChild(elFieldsetDifficulty);
 
 const elParagraphLevel = document.createElement("span");
 elParagraphLevel.innerText = `Level: ${game.level}`;
