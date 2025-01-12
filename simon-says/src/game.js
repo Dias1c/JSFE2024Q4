@@ -29,7 +29,7 @@ export class Game {
 
   isKeyboardListenAvailable = false;
 
-  round = 1;
+  round = 0;
   roundsTotal = 5;
   roundAttempt = 0;
   roundAttemptsTotal = 2;
