@@ -6,32 +6,34 @@ export const MAP_DIFFICULTY = {
   HARD: "hard",
 };
 
+const MAP_DIFFICULTY_CONFIG = {
+  [MAP_DIFFICULTY.EASY]: {
+    numbers: true,
+    letters: false,
+  },
+  [MAP_DIFFICULTY.MEDIUM]: {
+    numbers: false,
+    letters: true,
+  },
+  [MAP_DIFFICULTY.HARD]: {
+    numbers: true,
+    letters: true,
+  },
+};
+
 export class Game {
   isStarted = false;
-  level = 0;
-  difficulty = "easy";
+  level = 1;
+  difficulty;
 
   controllers;
 
   constructor({ elementTarget, difficulty }) {
-    const controllers = {
-      selectDifficulty: Controllers.createSelectDifficulty({
-        options: Object.values(MAP_DIFFICULTY),
-        selected: difficulty,
-      }),
-      divKeyboard: Controllers.createElementBlockKeybaord({
-        rowNumbers: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
-        rowsKeys: [
-          ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
-          ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
-          ["Z", "X", "C", "V", "B", "N", "M"],
-        ],
-      }),
-      buttonStart: Controllers.createButton({ title: "start" }),
-      buttonNewGame: Controllers.createButton({
-        title: "new game",
-      }),
-    };
+    // ? Create Elements
+    const controllers = new Controllers({
+      difficultyOptions: Object.values(MAP_DIFFICULTY),
+      difficultySelected: difficulty,
+    });
 
     const elSection = document.createElement("section");
     elementTarget.appendChild(elSection);
@@ -50,11 +52,46 @@ export class Game {
     elSection.appendChild(controllers.buttonStart.element);
     elSection.appendChild(controllers.buttonNewGame.element);
 
+    // ? Set Props
+    this.difficulty = difficulty;
     this.controllers = controllers;
+
+    // ? Init Game
+    this.onChangeDifficultyLevelTo({ difficulty: this.difficulty });
+
+    // ? Add Listeners
+    this.controllers.selectDifficulty.element.addEventListener(
+      "change",
+      (e) => {
+        this.onChangeDifficultyLevelTo({ difficulty: e.target.value });
+      }
+    );
+  }
+
+  onChangeDifficultyLevelTo({ difficulty }) {
+    const difficultyConfig = MAP_DIFFICULTY_CONFIG[difficulty];
+    if (!difficultyConfig) {
+      throw new Error(
+        `There is no difficultyConfig for value "(${difficulty})"`
+      );
+    }
+    this.difficulty = difficulty;
+
+    const { divKeyboard } = this.controllers;
+    if (difficultyConfig.numbers) {
+      divKeyboard.controllers.numbersRow.show();
+    } else {
+      divKeyboard.controllers.numbersRow.hide();
+    }
+
+    if (difficultyConfig.letters) {
+      divKeyboard.controllers.lettersRows.show();
+    } else {
+      divKeyboard.controllers.lettersRows.hide();
+    }
   }
 
   onStart() {}
   onRestart() {}
   onLevelChangeTo() {}
-  onDifficultyChangeTo() {}
 }
