@@ -169,8 +169,7 @@ export class Game {
   async playSequence() {
     this.roundAttempt++;
 
-    this.isKeyboardListenAvailable = false;
-    this.controllers.divKeyboard.disable();
+    this.keyboardDisable();
     this.controllers.buttonRepeatSequence.disable();
 
     this.playerValue = "";
@@ -201,8 +200,7 @@ export class Game {
     if (this.roundAttempt < this.maxRoundAttempts) {
       this.controllers.buttonRepeatSequence.enable();
     }
-    this.controllers.divKeyboard.enable();
-    this.isKeyboardListenAvailable = true;
+    this.keyboardEnable();
   }
 
   onPressCharacter({ value }) {
@@ -236,15 +234,24 @@ export class Game {
         return;
       }
 
-      // TODO: Disable Keyboard
-      this.isKeyboardListenAvailable = false;
+      this.keyboardDisable();
     }
 
     if (isLengthSame) {
-      this.isKeyboardListenAvailable = false;
+      this.keyboardDisable();
       // TODO: Delay cause correct
+      // TODO: Max Rounds
       this.resetRound({ value: this.round + 1 });
     }
+  }
+
+  keyboardDisable() {
+    this.controllers.divKeyboard.disable();
+    this.isKeyboardListenAvailable = false;
+  }
+  keyboardEnable() {
+    this.controllers.divKeyboard.enable();
+    this.isKeyboardListenAvailable = true;
   }
 
   onRestart() {}
