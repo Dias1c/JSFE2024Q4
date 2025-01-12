@@ -43,6 +43,7 @@ export class Game {
     const elParagraphLevel = document.createElement("span");
     elParagraphLevel.innerText = `Level: ?`;
     elSection.appendChild(elParagraphLevel);
+    elSection.appendChild(controllers.buttonNewGame.element);
 
     const elBlockSequence = document.createElement("div");
     elBlockSequence.innerText = "SEQUENCE";
@@ -50,22 +51,31 @@ export class Game {
 
     elSection.appendChild(controllers.divKeyboard.element);
     elSection.appendChild(controllers.buttonStart.element);
-    elSection.appendChild(controllers.buttonNewGame.element);
 
     // ? Set Props
     this.difficulty = difficulty;
     this.controllers = controllers;
 
-    // ? Init Game
-    this.onChangeDifficultyLevelTo({ difficulty: this.difficulty });
+    this.init();
+    this.addEventListeners();
+  }
 
-    // ? Add Listeners
+  init() {
+    this.controllers.buttonNewGame.hide();
+    this.onChangeDifficultyLevelTo({ difficulty: this.difficulty });
+  }
+
+  addEventListeners() {
     this.controllers.selectDifficulty.element.addEventListener(
       "change",
       (e) => {
         this.onChangeDifficultyLevelTo({ difficulty: e.target.value });
       }
     );
+
+    this.controllers.buttonStart.element.addEventListener("click", () => {
+      this.onStart();
+    });
   }
 
   onChangeDifficultyLevelTo({ difficulty }) {
@@ -91,7 +101,11 @@ export class Game {
     }
   }
 
-  onStart() {}
+  onStart() {
+    this.controllers.buttonStart.hide();
+    this.controllers.buttonNewGame.show();
+    this.controllers.selectDifficulty.disable();
+  }
   onRestart() {}
   onLevelChangeTo() {}
 }
