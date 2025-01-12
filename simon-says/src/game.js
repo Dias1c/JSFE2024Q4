@@ -75,18 +75,23 @@ export class Game {
   }
 
   initEventListeners() {
-    this.controllers.selectDifficulty.element.addEventListener(
-      "change",
-      (e) => {
-        this.onChangeDifficultyLevelTo({ difficulty: e.target.value });
-      }
-    );
+    const { selectDifficulty, buttonStart, buttonRepeatSequence, divKeyboard } =
+      this.controllers;
 
-    this.controllers.buttonStart.element.addEventListener("click", () => {
+    selectDifficulty.element.addEventListener("change", (e) => {
+      this.onChangeDifficultyLevelTo({ difficulty: e.target.value });
+    });
+
+    buttonStart.element.addEventListener("click", () => {
       this.onStart();
     });
 
-    this.controllers.divKeyboard.element.addEventListener("click", (e) => {
+    buttonRepeatSequence.element.addEventListener("click", () => {
+      this.isRepeatSequenceClicked = true;
+      this.repeatSequence();
+    });
+
+    divKeyboard.element.addEventListener("click", (e) => {
       const elementButton = e.target;
       if (!elementButton?.dataset?.value) {
         return;
@@ -165,13 +170,16 @@ export class Game {
 
       // TODO: correct styling
       elementButton.style.background = "red";
-      await new Promise((r) => setTimeout(r, 1));
-      elementButton.style.transition = `${DELAY_MS - 1}ms`;
-      elementButton.style.background = "buttonface";
-      await new Promise((r) => setTimeout(r, DELAY_MS - 1));
+      await new Promise((r) => setTimeout(r, 100));
+      elementButton.style.transition = `${DELAY_MS - 100}ms`;
+      elementButton.style.background = "";
+      await new Promise((r) => setTimeout(r, DELAY_MS - 100));
+      elementButton.style.transition = "";
     }
 
-    this.controllers.buttonRepeatSequence.enable();
+    if (!this.isRepeatSequenceClicked) {
+      this.controllers.buttonRepeatSequence.enable();
+    }
     this.controllers.divKeyboard.enable();
     this.isKeyboardListenAvailable = true;
   }
