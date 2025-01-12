@@ -55,6 +55,9 @@ export class Controllers {
       enable: function () {
         this.element.disabled = false;
       },
+      getCharacter: function () {
+        return key;
+      },
     };
   }
 
@@ -86,12 +89,27 @@ export class Controllers {
       show: function () {
         this.element.style.display = "";
       },
+      getCharacters: function () {
+        return keyControllers.map((c) => c.getCharacter());
+      },
     };
   }
 
   static createDivKeybaord({ rowNumbers, rowsLetters }) {
+    const characters = {};
+    const characterAdd = (c) => {
+      characters[c] = true;
+    };
+    const characterRemove = (c) => {
+      delete characters[c];
+    };
+    const charactersGetArray = () => {
+      return Object.keys(characters);
+    };
+
     const elDivKeyboard = document.createElement("div");
 
+    rowNumbers.forEach((c) => characterAdd(c));
     const controllerNumbersRow = this.createBlockKeybaordRow({
       row: rowNumbers,
     });
@@ -99,6 +117,8 @@ export class Controllers {
 
     const controllersLettersRows = [];
     rowsLetters.forEach((row) => {
+      row.forEach((c) => characterAdd(c));
+
       const controllerLettersRow = this.createBlockKeybaordRow({
         row: row,
       });
@@ -109,7 +129,27 @@ export class Controllers {
     return {
       element: elDivKeyboard,
       controllers: {
-        numbersRow: controllerNumbersRow,
+        numbersRow: {
+          element: controllerNumbersRow.element,
+          disable: function () {
+            controllerNumbersRow.disable();
+          },
+          enable: function () {
+            controllerNumbersRow.enable();
+          },
+          hide: function () {
+            controllerNumbersRow.hide();
+            controllerNumbersRow.getCharacters().forEach((c) => {
+              characterRemove(c);
+            });
+          },
+          show: function () {
+            controllerNumbersRow.show();
+            controllerNumbersRow.getCharacters().forEach((c) => {
+              characterAdd(c);
+            });
+          },
+        },
         lettersRows: {
           elements: controllersLettersRows.map((v) => v.element),
           disable: function () {
@@ -123,12 +163,25 @@ export class Controllers {
             });
           },
           hide: function () {
-            this.elements.forEach((v) => (v.style.display = "none"));
+            controllersLettersRows.forEach((row) => {
+              row.hide();
+              row.getCharacters().forEach((c) => {
+                characterRemove(c);
+              });
+            });
           },
           show: function () {
-            this.elements.forEach((v) => (v.style.display = ""));
+            controllersLettersRows.forEach((row) => {
+              row.show();
+              row.getCharacters().forEach((c) => {
+                characterAdd(c);
+              });
+            });
           },
         },
+      },
+      getVisibleCharacters: function () {
+        return charactersGetArray();
       },
     };
   }
