@@ -32,6 +32,7 @@ export class Game {
   playerValue = "";
 
   round = 1;
+  roundsTotal = 5;
   roundAttempt = 0;
   maxRoundAttempts = 2;
 
@@ -129,7 +130,7 @@ export class Game {
     }
   }
 
-  resetRound({ value }) {
+  startRound({ value }) {
     this.round = value;
     const chars = this.controllers.divKeyboard.getVisibleCharacters();
     this.roundAttempt = 0;
@@ -163,7 +164,7 @@ export class Game {
     this.controllers.selectDifficulty.disable();
 
     this.isStarted = true;
-    this.resetRound({ value: 1 });
+    this.startRound({ value: 1 });
   }
 
   async playSequence() {
@@ -241,7 +242,7 @@ export class Game {
       this.keyboardDisable();
       // TODO: Delay cause correct
       // TODO: Max Rounds
-      this.resetRound({ value: this.round + 1 });
+      this.startNextRound();
     }
   }
 
@@ -252,6 +253,14 @@ export class Game {
   keyboardEnable() {
     this.controllers.divKeyboard.enable();
     this.isKeyboardListenAvailable = true;
+  }
+
+  startNextRound() {
+    if (this.round == this.roundsTotal) {
+      console.error("TODO Finishs the game");
+      return;
+    }
+    this.startRound({ value: this.round + 1 });
   }
 
   onRestart() {}
