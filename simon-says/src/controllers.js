@@ -180,8 +180,19 @@ export class Controllers {
           },
         },
       },
+      disable: function () {
+        this.controllers.numbersRow.disable();
+        this.controllers.lettersRows.disable();
+      },
+      enable: function () {
+        this.controllers.numbersRow.enable();
+        this.controllers.lettersRows.enable();
+      },
       getVisibleCharacters: function () {
         return charactersGetArray();
+      },
+      isVisibleCharacter: function ({ value }) {
+        return value in characters;
       },
     };
   }
