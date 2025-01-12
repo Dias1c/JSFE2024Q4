@@ -133,6 +133,22 @@ export class Controllers {
     };
   }
 
+  static createSpan() {
+    const elSpan = document.createElement("span");
+    return {
+      element: elSpan,
+      hide: function () {
+        this.element.style.display = "none";
+      },
+      show: function () {
+        this.element.style.display = "";
+      },
+      setText: function ({ value }) {
+        this.element.textContent = value;
+      },
+    };
+  }
+
   constructor({ difficultyOptions, difficultySelected }) {
     this.selectDifficulty = Controllers.createSelectDifficulty({
       options: difficultyOptions,
@@ -153,5 +169,7 @@ export class Controllers {
     this.buttonRepeatSequence = Controllers.createButton({
       title: "repeat sequence",
     });
+    this.spanRound = Controllers.createSpan();
+    this.spanSequence = Controllers.createSpan();
   }
 }
