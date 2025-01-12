@@ -101,6 +101,7 @@ export class Game {
       buttonStart,
       buttonRepeatSequence,
       buttonNext,
+      buttonNewGame,
       divKeyboard,
     } = this.controllers;
 
@@ -108,7 +109,12 @@ export class Game {
       this.onChangeDifficultyLevelTo({ difficulty: e.target.value });
     });
 
-    buttonStart.element.addEventListener("click", () => this.start());
+    buttonStart.element.addEventListener("click", () => {
+      this.start();
+    });
+    buttonNewGame.element.addEventListener("click", () => {
+      this.setInitialState();
+    });
     buttonRepeatSequence.element.addEventListener("click", () =>
       this.playSequence()
     );
@@ -130,6 +136,11 @@ export class Game {
 
       this.onPressCharacter({ value: e.key });
     });
+  }
+
+  isInitialState() {
+    // TODO: Correct Reset Game with resetting animations
+    return this.round == 0;
   }
 
   onChangeDifficultyLevelTo({ difficulty }) {
@@ -191,17 +202,14 @@ export class Game {
 
   async playSequence() {
     this.roundAttempt++;
-
-    this.keyboardDisable();
-    this.controllers.buttonRepeatSequence.disable();
-
     this.playerValue = "";
     this.controllers.spanSequence.setText({ value: this.playerValue });
+    this.keyboardDisable();
+    this.controllers.buttonRepeatSequence.disable();
 
     await new Promise((r) => setTimeout(r, DELAY_MS));
 
     const sequence = this.targetValue;
-
     for (let i = 0; i < sequence.length; i++) {
       const character = sequence[i];
       /**
@@ -218,6 +226,10 @@ export class Game {
       elementButton.style.background = "";
       await new Promise((r) => setTimeout(r, DELAY_MS - 100));
       elementButton.style.transition = "";
+    }
+
+    if (this.isInitialState()) {
+      return;
     }
 
     if (this.roundAttempt < this.roundAttemptsTotal) {
