@@ -25,16 +25,20 @@ const MAP_DIFFICULTY_CONFIG = {
 
 export class Game {
   isStarted = false;
-  // 2, 4, 6, 8, 10
-  round = 1;
   difficulty;
   controllers;
+
   isKeyboardListenAvailable = false;
   playerValue = "";
+
+  // TODO: 2, 4, 6, 8, 10
+  round = 1;
+  isRepeatSequenceClicked = false;
   /**
    * @type {string | null}
    */
   targetValue = null;
+  playerValue = "";
 
   constructor({ elementTarget, difficulty }) {
     // ? Create Elements
@@ -59,7 +63,7 @@ export class Game {
     this.controllers = controllers;
 
     this.init();
-    this.addEventListeners();
+    this.initEventListeners();
   }
 
   init() {
@@ -70,7 +74,7 @@ export class Game {
     this.onChangeDifficultyLevelTo({ difficulty: this.difficulty });
   }
 
-  addEventListeners() {
+  initEventListeners() {
     this.controllers.selectDifficulty.element.addEventListener(
       "change",
       (e) => {
@@ -144,6 +148,8 @@ export class Game {
   async repeatSequence() {
     this.isKeyboardListenAvailable = false;
     this.controllers.divKeyboard.disable();
+    this.controllers.buttonRepeatSequence.disable();
+
     await new Promise((r) => setTimeout(r, DELAY_MS));
 
     const sequence = this.targetValue;
@@ -165,6 +171,7 @@ export class Game {
       await new Promise((r) => setTimeout(r, DELAY_MS - 1));
     }
 
+    this.controllers.buttonRepeatSequence.enable();
     this.controllers.divKeyboard.enable();
     this.isKeyboardListenAvailable = true;
   }
