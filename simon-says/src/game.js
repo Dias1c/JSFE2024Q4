@@ -86,8 +86,10 @@ export class Game {
       this.onChangeDifficultyLevelTo({ difficulty: e.target.value });
     });
 
-    buttonStart.element.addEventListener("click", this.start);
-    buttonRepeatSequence.element.addEventListener("click", this.playSequence);
+    buttonStart.element.addEventListener("click", () => this.start());
+    buttonRepeatSequence.element.addEventListener("click", () =>
+      this.playSequence()
+    );
     buttonNext.element.addEventListener("click", () => {
       this.startRound({ value: this.round + 1 });
     });
@@ -230,18 +232,12 @@ export class Game {
     this.controllers.spanSequence.setText({ value: this.playerValue });
 
     if (!isCorrect) {
-      if (this.roundAttempt < this.roundAttemptsTotal) {
-        this.playSequence();
-        return;
-      }
-
-      this.keyboardDisable();
+      this.onRoundFail();
+      return;
     }
 
     if (isLengthSame) {
-      this.keyboardDisable();
-      // TODO: Delay cause correct
-      //
+      this.onRoundPass();
     }
   }
 
@@ -252,6 +248,24 @@ export class Game {
   keyboardEnable() {
     this.controllers.divKeyboard.enable();
     this.isKeyboardListenAvailable = true;
+  }
+
+  onRoundPass() {
+    this.keyboardDisable();
+    this.controllers.buttonRepeatSequence.hide();
+
+    if (this.round <= this.roundsTotal) {
+      this.controllers.buttonNext.show();
+    }
+  }
+
+  onRoundFail() {
+    this.keyboardDisable();
+
+    if (this.roundAttempt < this.roundAttemptsTotal) {
+      this.playSequence();
+      return;
+    }
   }
 
   onRestart() {}
