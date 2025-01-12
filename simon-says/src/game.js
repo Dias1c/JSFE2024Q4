@@ -23,7 +23,8 @@ const MAP_DIFFICULTY_CONFIG = {
 
 export class Game {
   isStarted = false;
-  level = 1;
+  // 2, 4, 6, 8, 10
+  round = 1;
   difficulty;
 
   controllers;
@@ -39,17 +40,10 @@ export class Game {
     elementTarget.appendChild(elSection);
 
     elSection.appendChild(controllers.selectDifficulty.element);
-
-    const elParagraphLevel = document.createElement("span");
-    elParagraphLevel.innerText = `Level: ?`;
-    elSection.appendChild(elParagraphLevel);
+    elSection.appendChild(controllers.spanRound.element);
     elSection.appendChild(controllers.buttonNewGame.element);
     elSection.appendChild(controllers.buttonRepeatSequence.element);
-
-    const elBlockSequence = document.createElement("div");
-    elBlockSequence.innerText = "SEQUENCE";
-    elSection.appendChild(elBlockSequence);
-
+    elSection.appendChild(controllers.spanSequence.element);
     elSection.appendChild(controllers.divKeyboard.element);
     elSection.appendChild(controllers.buttonStart.element);
 
@@ -62,6 +56,8 @@ export class Game {
   }
 
   init() {
+    this.controllers.spanSequence.hide();
+    this.controllers.spanRound.hide();
     this.controllers.buttonNewGame.hide();
     this.controllers.buttonRepeatSequence.hide();
     this.onChangeDifficultyLevelTo({ difficulty: this.difficulty });
@@ -104,6 +100,12 @@ export class Game {
   }
 
   onStart() {
+    this.round = 1;
+    this.controllers.spanRound.setText({ value: `Round ${this.round}/5` });
+    this.controllers.spanRound.show();
+
+    this.controllers.spanSequence.show();
+
     this.controllers.buttonStart.hide();
     this.controllers.buttonNewGame.show();
     this.controllers.buttonRepeatSequence.show();
