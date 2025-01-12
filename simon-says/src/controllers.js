@@ -89,7 +89,7 @@ export class Controllers {
     };
   }
 
-  static createElementBlockKeybaord({ rowNumbers, rowsKeys }) {
+  static createElementBlockKeybaord({ rowNumbers, rowsLetters }) {
     const elDivKeyboard = document.createElement("div");
 
     const controllerNumbersRow = this.createBlockKeybaordRow({
@@ -98,7 +98,7 @@ export class Controllers {
     elDivKeyboard.appendChild(controllerNumbersRow.element);
 
     const controllersLettersRows = [];
-    rowsKeys.forEach((row) => {
+    rowsLetters.forEach((row) => {
       const controllerLettersRow = this.createBlockKeybaordRow({
         row: row,
       });
@@ -131,5 +131,24 @@ export class Controllers {
         },
       },
     };
+  }
+
+  constructor({ difficultyOptions, difficultySelected }) {
+    this.selectDifficulty = Controllers.createSelectDifficulty({
+      options: difficultyOptions,
+      selected: difficultySelected,
+    });
+    this.divKeyboard = Controllers.createElementBlockKeybaord({
+      rowNumbers: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
+      rowsLetters: [
+        ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
+        ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
+        ["Z", "X", "C", "V", "B", "N", "M"],
+      ],
+    });
+    this.buttonStart = Controllers.createButton({ title: "start" });
+    this.buttonNewGame = Controllers.createButton({
+      title: "new game",
+    });
   }
 }
