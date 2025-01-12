@@ -51,6 +51,7 @@ export class Game {
     elSection.appendChild(controllers.spanRound.element);
     elSection.appendChild(controllers.buttonNewGame.element);
     elSection.appendChild(controllers.buttonRepeatSequence.element);
+    elSection.appendChild(controllers.buttonNext.element);
     elSection.appendChild(controllers.spanSequence.element);
     elSection.appendChild(controllers.divKeyboard.element);
     elSection.appendChild(controllers.buttonStart.element);
@@ -68,12 +69,18 @@ export class Game {
     this.controllers.spanRound.hide();
     this.controllers.buttonNewGame.hide();
     this.controllers.buttonRepeatSequence.hide();
+    this.controllers.buttonNext.hide();
     this.onChangeDifficultyLevelTo({ difficulty: this.difficulty });
   }
 
   initEventListeners() {
-    const { selectDifficulty, buttonStart, buttonRepeatSequence, divKeyboard } =
-      this.controllers;
+    const {
+      selectDifficulty,
+      buttonStart,
+      buttonRepeatSequence,
+      buttonNext,
+      divKeyboard,
+    } = this.controllers;
 
     selectDifficulty.element.addEventListener("change", (e) => {
       this.onChangeDifficultyLevelTo({ difficulty: e.target.value });
@@ -81,6 +88,9 @@ export class Game {
 
     buttonStart.element.addEventListener("click", this.start);
     buttonRepeatSequence.element.addEventListener("click", this.playSequence);
+    buttonNext.element.addEventListener("click", () => {
+      this.startRound({ value: this.round + 1 });
+    });
 
     divKeyboard.element.addEventListener("click", (e) => {
       const elementButton = e.target;
@@ -231,7 +241,7 @@ export class Game {
     if (isLengthSame) {
       this.keyboardDisable();
       // TODO: Delay cause correct
-      this.startNextRound();
+      //
     }
   }
 
@@ -242,14 +252,6 @@ export class Game {
   keyboardEnable() {
     this.controllers.divKeyboard.enable();
     this.isKeyboardListenAvailable = true;
-  }
-
-  startNextRound() {
-    if (this.round == this.roundsTotal) {
-      // TODO: SHOW WIN MESSAGE
-      return;
-    }
-    this.startRound({ value: this.round + 1 });
   }
 
   onRestart() {}

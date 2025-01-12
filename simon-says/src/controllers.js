@@ -233,6 +233,9 @@ export class Controllers {
     this.buttonRepeatSequence = Controllers.createButton({
       title: "repeat sequence",
     });
+    this.buttonNext = Controllers.createButton({
+      title: "next",
+    });
     this.spanRound = Controllers.createSpan();
     this.spanSequence = Controllers.createSpan();
   }
