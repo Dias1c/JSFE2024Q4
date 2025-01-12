@@ -37,7 +37,7 @@ export class Game {
   /**
    * @type {string | null}
    */
-  targetValue = null;
+  targetValue = "";
   playerValue = "";
 
   constructor({ elementTarget, difficulty }) {
@@ -87,8 +87,7 @@ export class Game {
     });
 
     buttonRepeatSequence.element.addEventListener("click", () => {
-      this.isRepeatSequenceClicked = true;
-      this.repeatSequence();
+      this.playSequence({ disableRepeat: true });
     });
 
     divKeyboard.element.addEventListener("click", (e) => {
@@ -129,6 +128,25 @@ export class Game {
     }
   }
 
+  resetRound({ value }) {
+    this.round = value;
+    const chars = this.controllers.divKeyboard.getVisibleCharacters();
+    this.roundAttempt = false;
+    this.playerValue = "";
+    this.controllers.spanSequence.setText({ value: this.playerValue });
+    this.controllers.spanRound.setText({ value: `Round ${this.round}/5` });
+
+    let targetValue = "";
+    const requiredLength = this.round * 2;
+    for (let i = 0; i < requiredLength; i++) {
+      const idx = Math.floor(Math.random() * chars.length);
+      targetValue += chars[idx];
+    }
+    this.targetValue = targetValue;
+
+    this.playSequence({});
+  }
+
   // TODO: animation
 
   onStart() {
@@ -144,16 +162,20 @@ export class Game {
     this.controllers.selectDifficulty.disable();
 
     this.isStarted = true;
-    this.userValue = "";
-    this.targetValue = "12";
-
-    this.repeatSequence();
+    this.resetRound({ value: 1 });
   }
 
-  async repeatSequence() {
+  async playSequence({ disableRepeat }) {
+    if (disableRepeat) {
+      this.roundAttempt = disableRepeat;
+    }
+
     this.isKeyboardListenAvailable = false;
     this.controllers.divKeyboard.disable();
     this.controllers.buttonRepeatSequence.disable();
+
+    this.playerValue = "";
+    this.controllers.spanSequence.setText({ value: this.playerValue });
 
     await new Promise((r) => setTimeout(r, DELAY_MS));
 
@@ -204,8 +226,25 @@ export class Game {
     }
     this.playerValue += targetChar;
 
-    // TODO: adding symbols
+    const isCorrect = this.targetValue.startsWith(this.playerValue);
+    const isLengthSame = this.playerValue.length == this.targetValue.length;
+
     this.controllers.spanSequence.setText({ value: this.playerValue });
+
+    if (!isCorrect) {
+      if (this.isRepeatSequenceClicked) {
+        // TODO
+        console.error("i dont know what to do");
+        return;
+      }
+      this.playSequence({ disableRepeat: true });
+    }
+
+    if (isLengthSame) {
+      this.isKeyboardListenAvailable = false;
+      // TODO: Delay cause correct
+      this.resetRound({ value: this.round + 1 });
+    }
   }
 
   onRestart() {}
