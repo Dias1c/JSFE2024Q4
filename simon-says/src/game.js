@@ -1,5 +1,7 @@
 import { Controllers } from "./controllers.js";
 
+const DELAY_MS = 1000;
+
 export const MAP_DIFFICULTY = {
   EASY: "easy",
   MEDIUM: "medium",
@@ -26,8 +28,13 @@ export class Game {
   // 2, 4, 6, 8, 10
   round = 1;
   difficulty;
-
   controllers;
+  isKeyboardListenAvailable = false;
+  playerValue = "";
+  /**
+   * @type {string | null}
+   */
+  targetValue = null;
 
   constructor({ elementTarget, difficulty }) {
     // ? Create Elements
@@ -74,6 +81,20 @@ export class Game {
     this.controllers.buttonStart.element.addEventListener("click", () => {
       this.onStart();
     });
+
+    this.controllers.divKeyboard.element.addEventListener("click", (e) => {
+      const elementButton = e.target;
+      if (!elementButton?.dataset?.value) {
+        return;
+      }
+
+      this.onPressCharacter({ value: elementButton.dataset.value });
+    });
+    window.addEventListener("keyup", (e) => {
+      // TODO: handle any buttons?
+
+      this.onPressCharacter({ value: e.key });
+    });
   }
 
   onChangeDifficultyLevelTo({ difficulty }) {
@@ -99,6 +120,8 @@ export class Game {
     }
   }
 
+  // TODO: animation
+
   onStart() {
     this.round = 1;
     this.controllers.spanRound.setText({ value: `Round ${this.round}/5` });
@@ -110,7 +133,66 @@ export class Game {
     this.controllers.buttonNewGame.show();
     this.controllers.buttonRepeatSequence.show();
     this.controllers.selectDifficulty.disable();
+
+    this.isStarted = true;
+    this.userValue = "";
+    this.targetValue = "12";
+
+    this.repeatSequence();
   }
+
+  async repeatSequence() {
+    this.isKeyboardListenAvailable = false;
+    this.controllers.divKeyboard.disable();
+    await new Promise((r) => setTimeout(r, DELAY_MS));
+
+    const sequence = this.targetValue;
+
+    for (let i = 0; i < sequence.length; i++) {
+      const character = sequence[i];
+      /**
+       * @type {HTMLButtonElement}
+       */
+      const elementButton = this.controllers.divKeyboard.element.querySelector(
+        `*[data-value="${character}"]`
+      );
+
+      // TODO: correct styling
+      elementButton.style.background = "red";
+      await new Promise((r) => setTimeout(r, 1));
+      elementButton.style.transition = `${DELAY_MS - 1}ms`;
+      elementButton.style.background = "buttonface";
+      await new Promise((r) => setTimeout(r, DELAY_MS - 1));
+    }
+
+    this.controllers.divKeyboard.enable();
+    this.isKeyboardListenAvailable = true;
+  }
+
+  onPressCharacter({ value }) {
+    if (!this.isKeyboardListenAvailable) {
+      return;
+    }
+    if (typeof value != "string") {
+      return;
+    }
+
+    const targetChar = value.toUpperCase();
+    if (
+      !this.controllers.divKeyboard.isVisibleCharacter({ value: targetChar })
+    ) {
+      return;
+    }
+
+    if (!this.playerValue) {
+      this.playerValue = "";
+    }
+    this.playerValue += targetChar;
+
+    // TODO: adding symbols
+    this.controllers.spanSequence.setText({ value: this.playerValue });
+  }
+
   onRestart() {}
   onLevelChangeTo() {}
 }
