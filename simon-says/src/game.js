@@ -31,9 +31,10 @@ export class Game {
   isKeyboardListenAvailable = false;
   playerValue = "";
 
-  // TODO: 2, 4, 6, 8, 10
   round = 1;
-  isRepeatSequenceClicked = false;
+  roundAttempt = 0;
+  maxRoundAttempts = 2;
+
   /**
    * @type {string | null}
    */
@@ -87,7 +88,7 @@ export class Game {
     });
 
     buttonRepeatSequence.element.addEventListener("click", () => {
-      this.playSequence({ disableRepeat: true });
+      this.playSequence();
     });
 
     divKeyboard.element.addEventListener("click", (e) => {
@@ -131,7 +132,7 @@ export class Game {
   resetRound({ value }) {
     this.round = value;
     const chars = this.controllers.divKeyboard.getVisibleCharacters();
-    this.roundAttempt = false;
+    this.roundAttempt = 0;
     this.playerValue = "";
     this.controllers.spanSequence.setText({ value: this.playerValue });
     this.controllers.spanRound.setText({ value: `Round ${this.round}/5` });
@@ -144,7 +145,7 @@ export class Game {
     }
     this.targetValue = targetValue;
 
-    this.playSequence({});
+    this.playSequence();
   }
 
   // TODO: animation
@@ -165,10 +166,8 @@ export class Game {
     this.resetRound({ value: 1 });
   }
 
-  async playSequence({ disableRepeat }) {
-    if (disableRepeat) {
-      this.roundAttempt = disableRepeat;
-    }
+  async playSequence() {
+    this.roundAttempt++;
 
     this.isKeyboardListenAvailable = false;
     this.controllers.divKeyboard.disable();
@@ -199,7 +198,7 @@ export class Game {
       elementButton.style.transition = "";
     }
 
-    if (!this.isRepeatSequenceClicked) {
+    if (this.roundAttempt < this.maxRoundAttempts) {
       this.controllers.buttonRepeatSequence.enable();
     }
     this.controllers.divKeyboard.enable();
@@ -232,12 +231,13 @@ export class Game {
     this.controllers.spanSequence.setText({ value: this.playerValue });
 
     if (!isCorrect) {
-      if (this.isRepeatSequenceClicked) {
-        // TODO
-        console.error("i dont know what to do");
+      if (this.roundAttempt < this.maxRoundAttempts) {
+        this.playSequence();
         return;
       }
-      this.playSequence({ disableRepeat: true });
+
+      // TODO: Disable Keyboard
+      this.isKeyboardListenAvailable = false;
     }
 
     if (isLengthSame) {
