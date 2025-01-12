@@ -44,6 +44,7 @@ export class Game {
     elParagraphLevel.innerText = `Level: ?`;
     elSection.appendChild(elParagraphLevel);
     elSection.appendChild(controllers.buttonNewGame.element);
+    elSection.appendChild(controllers.buttonRepeatSequence.element);
 
     const elBlockSequence = document.createElement("div");
     elBlockSequence.innerText = "SEQUENCE";
@@ -62,6 +63,7 @@ export class Game {
 
   init() {
     this.controllers.buttonNewGame.hide();
+    this.controllers.buttonRepeatSequence.hide();
     this.onChangeDifficultyLevelTo({ difficulty: this.difficulty });
   }
 
@@ -104,6 +106,7 @@ export class Game {
   onStart() {
     this.controllers.buttonStart.hide();
     this.controllers.buttonNewGame.show();
+    this.controllers.buttonRepeatSequence.show();
     this.controllers.selectDifficulty.disable();
   }
   onRestart() {}

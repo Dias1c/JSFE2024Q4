@@ -150,5 +150,8 @@ export class Controllers {
     this.buttonNewGame = Controllers.createButton({
       title: "new game",
     });
+    this.buttonRepeatSequence = Controllers.createButton({
+      title: "repeat sequence",
+    });
   }
 }
