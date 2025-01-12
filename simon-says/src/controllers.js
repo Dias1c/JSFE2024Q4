@@ -89,7 +89,7 @@ export class Controllers {
     };
   }
 
-  static createElementBlockKeybaord({ rowNumbers, rowsLetters }) {
+  static createDivKeybaord({ rowNumbers, rowsLetters }) {
     const elDivKeyboard = document.createElement("div");
 
     const controllerNumbersRow = this.createBlockKeybaordRow({
@@ -138,7 +138,7 @@ export class Controllers {
       options: difficultyOptions,
       selected: difficultySelected,
     });
-    this.divKeyboard = Controllers.createElementBlockKeybaord({
+    this.divKeyboard = Controllers.createDivKeybaord({
       rowNumbers: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
       rowsLetters: [
         ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
