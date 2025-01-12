@@ -38,14 +38,22 @@ export class Game {
   playerValue = "";
 
   constructor({ elementTarget, difficulty }) {
-    // ? Create Elements
-    const controllers = new Controllers({
+    this.difficulty = difficulty;
+    this.controllers = new Controllers({
       difficultyOptions: Object.values(MAP_DIFFICULTY),
       difficultySelected: difficulty,
     });
 
+    this.setControllersTo({ elementTarget });
+    this.setEventListeners();
+    this.setInitialState();
+  }
+
+  setControllersTo({ elementTarget }) {
     const elSection = document.createElement("section");
     elementTarget.appendChild(elSection);
+
+    const controllers = this.controllers;
 
     elSection.appendChild(controllers.selectDifficulty.element);
     elSection.appendChild(controllers.spanRound.element);
@@ -55,25 +63,39 @@ export class Game {
     elSection.appendChild(controllers.spanSequence.element);
     elSection.appendChild(controllers.divKeyboard.element);
     elSection.appendChild(controllers.buttonStart.element);
-
-    // ? Set Props
-    this.difficulty = difficulty;
-    this.controllers = controllers;
-
-    this.init();
-    this.initEventListeners();
   }
 
-  init() {
-    this.controllers.spanSequence.hide();
-    this.controllers.spanRound.hide();
-    this.controllers.buttonNewGame.hide();
-    this.controllers.buttonRepeatSequence.hide();
-    this.controllers.buttonNext.hide();
+  setInitialState() {
+    this.round = 0;
+    this.roundAttempt = 0;
+    this.playerValue = "";
+    this.targetValue = "";
+
+    const {
+      buttonNewGame,
+      buttonNext,
+      buttonRepeatSequence,
+      buttonStart,
+      divKeyboard,
+      selectDifficulty,
+      spanRound,
+      spanSequence,
+    } = this.controllers;
+
+    buttonStart.show();
+    divKeyboard.disable();
+    selectDifficulty.enable();
+
+    spanSequence.hide();
+    spanRound.hide();
+    buttonNewGame.hide();
+    buttonRepeatSequence.hide();
+    buttonNext.hide();
+
     this.onChangeDifficultyLevelTo({ difficulty: this.difficulty });
   }
 
-  initEventListeners() {
+  setEventListeners() {
     const {
       selectDifficulty,
       buttonStart,
@@ -151,8 +173,6 @@ export class Game {
 
     this.playSequence();
   }
-
-  // TODO: animation
 
   start() {
     this.round = 1;
@@ -267,7 +287,4 @@ export class Game {
       return;
     }
   }
-
-  onRestart() {}
-  onLevelChangeTo() {}
 }
