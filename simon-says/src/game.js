@@ -24,21 +24,16 @@ const MAP_DIFFICULTY_CONFIG = {
 };
 
 export class Game {
-  isStarted = false;
   difficulty;
   controllers;
 
   isKeyboardListenAvailable = false;
-  playerValue = "";
 
   round = 1;
   roundsTotal = 5;
   roundAttempt = 0;
-  maxRoundAttempts = 2;
+  roundAttemptsTotal = 2;
 
-  /**
-   * @type {string | null}
-   */
   targetValue = "";
   playerValue = "";
 
@@ -84,13 +79,8 @@ export class Game {
       this.onChangeDifficultyLevelTo({ difficulty: e.target.value });
     });
 
-    buttonStart.element.addEventListener("click", () => {
-      this.onStart();
-    });
-
-    buttonRepeatSequence.element.addEventListener("click", () => {
-      this.playSequence();
-    });
+    buttonStart.element.addEventListener("click", this.start);
+    buttonRepeatSequence.element.addEventListener("click", this.playSequence);
 
     divKeyboard.element.addEventListener("click", (e) => {
       const elementButton = e.target;
@@ -100,6 +90,7 @@ export class Game {
 
       this.onPressCharacter({ value: elementButton.dataset.value });
     });
+
     window.addEventListener("keyup", (e) => {
       // TODO: handle any buttons?
 
@@ -151,7 +142,7 @@ export class Game {
 
   // TODO: animation
 
-  onStart() {
+  start() {
     this.round = 1;
     this.controllers.spanRound.setText({ value: `Round ${this.round}/5` });
     this.controllers.spanRound.show();
@@ -163,7 +154,6 @@ export class Game {
     this.controllers.buttonRepeatSequence.show();
     this.controllers.selectDifficulty.disable();
 
-    this.isStarted = true;
     this.startRound({ value: 1 });
   }
 
@@ -198,7 +188,7 @@ export class Game {
       elementButton.style.transition = "";
     }
 
-    if (this.roundAttempt < this.maxRoundAttempts) {
+    if (this.roundAttempt < this.roundAttemptsTotal) {
       this.controllers.buttonRepeatSequence.enable();
     }
     this.keyboardEnable();
@@ -230,7 +220,7 @@ export class Game {
     this.controllers.spanSequence.setText({ value: this.playerValue });
 
     if (!isCorrect) {
-      if (this.roundAttempt < this.maxRoundAttempts) {
+      if (this.roundAttempt < this.roundAttemptsTotal) {
         this.playSequence();
         return;
       }
@@ -241,7 +231,6 @@ export class Game {
     if (isLengthSame) {
       this.keyboardDisable();
       // TODO: Delay cause correct
-      // TODO: Max Rounds
       this.startNextRound();
     }
   }
@@ -257,7 +246,7 @@ export class Game {
 
   startNextRound() {
     if (this.round == this.roundsTotal) {
-      console.error("TODO Finishs the game");
+      // TODO: SHOW WIN MESSAGE
       return;
     }
     this.startRound({ value: this.round + 1 });
