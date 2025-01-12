@@ -34,10 +34,14 @@ export class Controllers {
         this.element.disabled = false;
       },
       hide: function () {
-        this.element.style.display = "none";
+        this.element.style.opacity = 0;
+        this.element.style.pointerEvents = "none";
+        this.element.style.userSelect = "none";
       },
       show: function () {
-        this.element.style.display = "";
+        this.element.style.opacity = 1;
+        this.element.style.pointerEvents = "";
+        this.element.style.userSelect = "";
       },
     };
   }
@@ -84,10 +88,14 @@ export class Controllers {
         });
       },
       hide: function () {
-        this.element.style.display = "none";
+        this.element.style.opacity = 0;
+        this.element.style.pointerEvents = "none";
+        this.element.style.userSelect = "none";
       },
       show: function () {
-        this.element.style.display = "";
+        this.element.style.opacity = 1;
+        this.element.style.pointerEvents = "";
+        this.element.style.userSelect = "";
       },
       getCharacters: function () {
         return keyControllers.map((c) => c.getCharacter());
@@ -202,10 +210,14 @@ export class Controllers {
     return {
       element: elSpan,
       hide: function () {
-        this.element.style.display = "none";
+        this.element.style.opacity = 0;
+        this.element.style.pointerEvents = "none";
+        this.element.style.userSelect = "none";
       },
       show: function () {
-        this.element.style.display = "";
+        this.element.style.opacity = 1;
+        this.element.style.pointerEvents = "";
+        this.element.style.userSelect = "";
       },
       setText: function ({ value }) {
         this.element.textContent = value;
