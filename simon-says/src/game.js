@@ -51,18 +51,32 @@ export class Game {
 
   setControllersTo({ elementTarget }) {
     const elSection = document.createElement("section");
+    // elSection.classList.add("game");
     elementTarget.appendChild(elSection);
 
     const controllers = this.controllers;
 
-    elSection.appendChild(controllers.selectDifficulty.element);
-    elSection.appendChild(controllers.spanRound.element);
-    elSection.appendChild(controllers.buttonNewGame.element);
-    elSection.appendChild(controllers.buttonRepeatSequence.element);
-    elSection.appendChild(controllers.buttonNext.element);
-    elSection.appendChild(controllers.spanSequence.element);
+    const elDivTop = document.createElement("div");
+    // elDivTop.classList.add("game__top");
+    elSection.appendChild(elDivTop);
+    elDivTop.appendChild(controllers.selectDifficulty.element);
+    elDivTop.appendChild(controllers.spanRound.element);
+
+    const elDivButtons = document.createElement("div");
+    // elDivButtons.classList.add("game__buttons");
+    elSection.appendChild(elDivButtons);
+    elDivButtons.appendChild(controllers.buttonRepeatSequence.element);
+
+    const elDivSequence = document.createElement("div");
+    // elDivSequence.classList.add("game__block-secuence");
+    elSection.appendChild(elDivSequence);
+    elDivSequence.appendChild(controllers.spanSequence.element);
+
+    // controllers.divKeyboard.element.classList.add("keyboard");
     elSection.appendChild(controllers.divKeyboard.element);
+
     elSection.appendChild(controllers.buttonStart.element);
+    elSection.appendChild(controllers.buttonNewGame.element);
   }
 
   setInitialState() {
@@ -90,6 +104,7 @@ export class Game {
     spanRound.hide();
     buttonNewGame.hide();
     buttonRepeatSequence.hide();
+    buttonNext.element.replaceWith(buttonRepeatSequence.element);
     buttonNext.hide();
 
     this.onChangeDifficultyLevelTo({ difficulty: this.difficulty });
@@ -171,6 +186,10 @@ export class Game {
     const chars = this.controllers.divKeyboard.getVisibleCharacters();
     this.roundAttempt = 0;
     this.playerValue = "";
+    this.controllers.buttonRepeatSequence.show();
+    this.controllers.buttonNext.element.replaceWith(
+      this.controllers.buttonRepeatSequence.element
+    );
     this.controllers.spanSequence.setText({ value: this.playerValue });
     this.controllers.spanRound.setText({ value: `Round ${this.round}/5` });
 
@@ -288,6 +307,9 @@ export class Game {
 
     if (this.round <= this.roundsTotal) {
       this.controllers.buttonNext.show();
+      this.controllers.buttonRepeatSequence.element.replaceWith(
+        this.controllers.buttonNext.element
+      );
     }
   }
 
