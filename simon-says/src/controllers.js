@@ -250,5 +250,6 @@ export class Controllers {
     });
     this.spanRound = Controllers.createSpan();
     this.spanSequence = Controllers.createSpan();
+    this.spanFeedback = Controllers.createSpan();
   }
 }

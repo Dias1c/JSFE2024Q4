@@ -60,6 +60,7 @@ export class Game {
     elDivTop.classList.add("game__top");
     elSection.appendChild(elDivTop);
     elDivTop.appendChild(controllers.selectDifficulty.element);
+    elDivTop.appendChild(controllers.spanFeedback.element);
     elDivTop.appendChild(controllers.spanRound.element);
 
     const elDivButtons = document.createElement("div");
@@ -99,6 +100,7 @@ export class Game {
       selectDifficulty,
       spanRound,
       spanSequence,
+      spanFeedback,
     } = this.controllers;
 
     buttonStart.show();
@@ -108,7 +110,8 @@ export class Game {
     );
     selectDifficulty.enable();
 
-    spanSequence.hide();
+    spanSequence.setText({ value: "" });
+    spanFeedback.setText({ value: "" });
     spanRound.hide();
     buttonNewGame.hide();
     buttonRepeatSequence.hide();
@@ -253,6 +256,7 @@ export class Game {
     this.controllers.buttonNext.element.replaceWith(
       this.controllers.buttonRepeatSequence.element
     );
+    this.controllers.spanFeedback.setText({ value: "" });
     this.controllers.spanSequence.setText({ value: this.playerValue });
     this.controllers.spanRound.setText({
       value: `Round ${this.round}/${this.roundsTotal}`,
@@ -273,12 +277,11 @@ export class Game {
     this.round = 1;
     this.controllers.spanRound.show();
 
-    this.controllers.spanSequence.show();
-
     this.controllers.buttonStart.hide();
     this.controllers.buttonNewGame.show();
     this.controllers.buttonRepeatSequence.show();
     this.controllers.selectDifficulty.disable();
+    this.controllers.spanFeedback.setText({ value: "" });
 
     this.startRound({ value: 1 });
   }
@@ -287,6 +290,7 @@ export class Game {
     this.roundAttempt++;
     this.playerValue = "";
     this.controllers.spanSequence.setText({ value: this.playerValue });
+    this.controllers.spanFeedback.setText({ value: "" });
     this.keyboardDisable();
     this.controllers.buttonRepeatSequence.disable();
 
@@ -379,19 +383,23 @@ export class Game {
     this.controllers.buttonRepeatSequence.hide();
 
     if (this.round < this.roundsTotal) {
+      this.controllers.spanFeedback.setText({ value: "[Round Passed]" });
       this.controllers.buttonNext.show();
       this.controllers.buttonRepeatSequence.element.replaceWith(
         this.controllers.buttonNext.element
       );
+      return;
     }
+    this.controllers.spanFeedback.setText({ value: "[You Win]" });
   }
 
   onRoundFail() {
     this.keyboardDisable();
 
     if (this.roundAttempt < this.roundAttemptsTotal) {
-      this.playSequence();
+      this.controllers.spanFeedback.setText({ value: "[Wrong]" });
       return;
     }
+    this.controllers.spanFeedback.setText({ value: "[Round Failed]" });
   }
 }
