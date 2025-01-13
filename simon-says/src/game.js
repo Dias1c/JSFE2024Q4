@@ -51,28 +51,28 @@ export class Game {
 
   setControllersTo({ elementTarget }) {
     const elSection = document.createElement("section");
-    // elSection.classList.add("game");
+    elSection.classList.add("game");
     elementTarget.appendChild(elSection);
 
     const controllers = this.controllers;
 
     const elDivTop = document.createElement("div");
-    // elDivTop.classList.add("game__top");
+    elDivTop.classList.add("game__top");
     elSection.appendChild(elDivTop);
     elDivTop.appendChild(controllers.selectDifficulty.element);
     elDivTop.appendChild(controllers.spanRound.element);
 
     const elDivButtons = document.createElement("div");
-    // elDivButtons.classList.add("game__buttons");
+    elDivButtons.classList.add("game__buttons");
     elSection.appendChild(elDivButtons);
     elDivButtons.appendChild(controllers.buttonRepeatSequence.element);
 
     const elDivSequence = document.createElement("div");
-    // elDivSequence.classList.add("game__block-secuence");
+    elDivSequence.classList.add("game__block-secuence");
     elSection.appendChild(elDivSequence);
     elDivSequence.appendChild(controllers.spanSequence.element);
 
-    // controllers.divKeyboard.element.classList.add("keyboard");
+    controllers.divKeyboard.element.classList.add("keyboard");
     elSection.appendChild(controllers.divKeyboard.element);
 
     elSection.appendChild(controllers.buttonStart.element);
