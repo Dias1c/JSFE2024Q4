@@ -380,7 +380,7 @@ export class Game {
 
   onRoundPass() {
     this.keyboardDisable();
-    this.controllers.buttonRepeatSequence.hide();
+    this.controllers.buttonRepeatSequence.disable();
 
     if (this.round < this.roundsTotal) {
       this.controllers.spanFeedback.setText({ value: "[Round Passed]" });
