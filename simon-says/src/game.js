@@ -278,6 +278,7 @@ export class Game {
     this.controllers.spanRound.show();
 
     this.controllers.buttonStart.hide();
+    this.controllers.buttonNewGame.enable();
     this.controllers.buttonNewGame.show();
     this.controllers.buttonRepeatSequence.show();
     this.controllers.selectDifficulty.disable();
@@ -288,6 +289,7 @@ export class Game {
 
   async playSequence() {
     this.roundAttempt++;
+    this.controllers.buttonNewGame.disable();
     this.playerValue = "";
     this.controllers.spanSequence.setText({ value: this.playerValue });
     this.controllers.spanFeedback.setText({ value: "" });
@@ -332,6 +334,7 @@ export class Game {
       this.controllers.buttonRepeatSequence.enable();
     }
     this.keyboardEnable();
+    this.controllers.buttonNewGame.enable();
   }
 
   onPressCharacter({ value }) {
