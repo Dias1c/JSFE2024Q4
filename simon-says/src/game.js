@@ -254,7 +254,9 @@ export class Game {
       this.controllers.buttonRepeatSequence.element
     );
     this.controllers.spanSequence.setText({ value: this.playerValue });
-    this.controllers.spanRound.setText({ value: `Round ${this.round}/5` });
+    this.controllers.spanRound.setText({
+      value: `Round ${this.round}/${this.roundsTotal}`,
+    });
 
     let targetValue = "";
     const requiredLength = this.round * 2;
@@ -269,7 +271,6 @@ export class Game {
 
   start() {
     this.round = 1;
-    this.controllers.spanRound.setText({ value: `Round ${this.round}/5` });
     this.controllers.spanRound.show();
 
     this.controllers.spanSequence.show();
@@ -377,7 +378,7 @@ export class Game {
     this.keyboardDisable();
     this.controllers.buttonRepeatSequence.hide();
 
-    if (this.round <= this.roundsTotal) {
+    if (this.round < this.roundsTotal) {
       this.controllers.buttonNext.show();
       this.controllers.buttonRepeatSequence.element.replaceWith(
         this.controllers.buttonNext.element
