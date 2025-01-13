@@ -137,18 +137,70 @@ export class Game {
       this.startRound({ value: this.round + 1 });
     });
 
-    divKeyboard.element.addEventListener("click", (e) => {
-      const elementButton = e.target;
-      if (!elementButton?.dataset?.value) {
+    const getPressingKeys = () =>
+      Array.from(
+        divKeyboard.element.querySelectorAll(".keybaord__key--pressing")
+      );
+
+    const elementsKeys = divKeyboard.element.querySelectorAll("*[data-value]");
+    Array.from(elementsKeys).forEach((elKey) => {
+      elKey.addEventListener("mousedown", (e) => {
+        const pressingKeys = getPressingKeys();
+        if (pressingKeys.length) {
+          return;
+        }
+
+        if (!this.isKeyboardListenAvailable) {
+          return;
+        }
+
+        elKey.classList.add("keybaord__key--pressing");
+      });
+      elKey.addEventListener("mouseup", () => {
+        const pressingKeys = getPressingKeys();
+        if (!pressingKeys.includes(elKey)) {
+          return;
+        }
+        elKey.classList.remove("keybaord__key--pressing");
+
+        if (!this.isKeyboardListenAvailable) {
+          return;
+        }
+        this.onPressCharacter({ value: e.target.dataset.value });
+      });
+    });
+
+    window.addEventListener("keydown", (e) => {
+      const pressingKeys = getPressingKeys();
+      if (pressingKeys.length) {
+        return;
+      }
+      if (!this.isKeyboardListenAvailable) {
         return;
       }
 
-      this.onPressCharacter({ value: elementButton.dataset.value });
+      const elKey = divKeyboard.element.querySelector(
+        `*[data-value="${e.key.toUpperCase()}"]`
+      );
+      if (elKey) {
+        elKey.classList.add("keybaord__key--pressing");
+      }
     });
-
     window.addEventListener("keyup", (e) => {
-      // TODO: handle any buttons?
+      const elKey = divKeyboard.element.querySelector(
+        `*[data-value="${e.key.toUpperCase()}"]`
+      );
+      const pressingKeys = getPressingKeys();
+      if (!pressingKeys.includes(elKey)) {
+        return;
+      }
+      if (elKey) {
+        elKey.classList.remove("keybaord__key--pressing");
+      }
 
+      if (!this.isKeyboardListenAvailable) {
+        return;
+      }
       this.onPressCharacter({ value: e.key });
     });
   }
@@ -238,13 +290,12 @@ export class Game {
         `*[data-value="${character}"]`
       );
 
-      // TODO: correct styling
-      elementButton.style.background = "red";
-      await new Promise((r) => setTimeout(r, 100));
-      elementButton.style.transition = `${DELAY_MS - 100}ms`;
-      elementButton.style.background = "";
-      await new Promise((r) => setTimeout(r, DELAY_MS - 100));
-      elementButton.style.transition = "";
+      elementButton.classList.add("keybaord__key--pressing");
+      setTimeout(
+        () => elementButton.classList.remove("keybaord__key--pressing"),
+        250
+      );
+      await new Promise((r) => setTimeout(r, DELAY_MS));
     }
 
     if (this.isInitialState()) {
