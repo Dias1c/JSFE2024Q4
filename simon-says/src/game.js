@@ -147,7 +147,7 @@ export class Game {
 
     const elementsKeys = divKeyboard.element.querySelectorAll("*[data-value]");
     Array.from(elementsKeys).forEach((elKey) => {
-      elKey.addEventListener("mousedown", (e) => {
+      elKey.addEventListener("mousedown", () => {
         const pressingKeys = this.getPressingKeys();
         if (pressingKeys.length) {
           return;
@@ -169,7 +169,7 @@ export class Game {
         if (!this.isKeyboardListenAvailable) {
           return;
         }
-        this.onPressCharacter({ value: e.target.dataset.value });
+        this.onPressCharacter({ value: elKey.dataset.value });
       });
     });
 
