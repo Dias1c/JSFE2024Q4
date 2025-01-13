@@ -80,6 +80,11 @@ export class Game {
   }
 
   setInitialState() {
+    if (this.stopAbortController) {
+      this.stopAbortController.abort();
+    }
+    this.stopAbortController = new AbortController();
+
     this.round = 0;
     this.roundAttempt = 0;
     this.playerValue = "";
@@ -98,6 +103,9 @@ export class Game {
 
     buttonStart.show();
     divKeyboard.disable();
+    this.getPressingKeys().forEach((v) =>
+      v.classList.remove("keybaord__key--pressing")
+    );
     selectDifficulty.enable();
 
     spanSequence.hide();
@@ -137,15 +145,10 @@ export class Game {
       this.startRound({ value: this.round + 1 });
     });
 
-    const getPressingKeys = () =>
-      Array.from(
-        divKeyboard.element.querySelectorAll(".keybaord__key--pressing")
-      );
-
     const elementsKeys = divKeyboard.element.querySelectorAll("*[data-value]");
     Array.from(elementsKeys).forEach((elKey) => {
       elKey.addEventListener("mousedown", (e) => {
-        const pressingKeys = getPressingKeys();
+        const pressingKeys = this.getPressingKeys();
         if (pressingKeys.length) {
           return;
         }
@@ -157,7 +160,7 @@ export class Game {
         elKey.classList.add("keybaord__key--pressing");
       });
       elKey.addEventListener("mouseup", () => {
-        const pressingKeys = getPressingKeys();
+        const pressingKeys = this.getPressingKeys();
         if (!pressingKeys.includes(elKey)) {
           return;
         }
@@ -171,7 +174,7 @@ export class Game {
     });
 
     window.addEventListener("keydown", (e) => {
-      const pressingKeys = getPressingKeys();
+      const pressingKeys = this.getPressingKeys();
       if (pressingKeys.length) {
         return;
       }
@@ -190,7 +193,7 @@ export class Game {
       const elKey = divKeyboard.element.querySelector(
         `*[data-value="${e.key.toUpperCase()}"]`
       );
-      const pressingKeys = getPressingKeys();
+      const pressingKeys = this.getPressingKeys();
       if (!pressingKeys.includes(elKey)) {
         return;
       }
@@ -208,6 +211,14 @@ export class Game {
   isInitialState() {
     // TODO: Correct Reset Game with resetting animations
     return this.round == 0;
+  }
+
+  getPressingKeys() {
+    return Array.from(
+      this.controllers.divKeyboard.element.querySelectorAll(
+        ".keybaord__key--pressing"
+      )
+    );
   }
 
   onChangeDifficultyLevelTo({ difficulty }) {
@@ -282,6 +293,10 @@ export class Game {
 
     const sequence = this.targetValue;
     for (let i = 0; i < sequence.length; i++) {
+      if (this.isInitialState()) {
+        return;
+      }
+
       const character = sequence[i];
       /**
        * @type {HTMLButtonElement}
@@ -295,7 +310,13 @@ export class Game {
         () => elementButton.classList.remove("keybaord__key--pressing"),
         250
       );
-      await new Promise((r) => setTimeout(r, DELAY_MS));
+      await new Promise((r) => {
+        const timeout = setTimeout(r, DELAY_MS);
+        this.stopAbortController.signal.addEventListener("abort", () => {
+          clearTimeout(timeout);
+          r();
+        });
+      });
     }
 
     if (this.isInitialState()) {
