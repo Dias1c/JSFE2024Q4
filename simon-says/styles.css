@@ -1,0 +1,70 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 100dvh;
+  width: 100dvw;
+  margin: 0;
+}
+
+.game {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.game__top {
+  display: flex;
+  gap: 4px;
+  justify-content: space-between;
+}
+
+.game__buttons {}
+
+.game__block-secuence {
+  height: 24px;
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+
+.keyboard * {
+  display: flex;
+  flex-direction: row;
+  gap: inherit;
+}
+
+.keybaord__key--pressing {
+  background-color: rgb(158, 158, 255);
+}
+
+
+
+@media (min-width: 360px) {
+  .game {
+    scale: 1;
+  }
+}
+
+@media (min-width: 768px) {
+  .game {
+    scale: 2;
+  }
+}
+
+@media (min-width: 1441px) {
+  .game {
+    scale: 2.5;
+  }
+}
