@@ -60,6 +60,7 @@ export class Game {
     elDivTop.classList.add("game__top");
     elSection.appendChild(elDivTop);
     elDivTop.appendChild(controllers.selectDifficulty.element);
+    controllers.spanFeedback.element.classList.add("feedback");
     elDivTop.appendChild(controllers.spanFeedback.element);
     elDivTop.appendChild(controllers.spanRound.element);
 

@@ -26,7 +26,9 @@ body {
   justify-content: space-between;
 }
 
-.game__buttons {}
+.feedback {
+  font-size: 0.8em;
+}
 
 .game__block-secuence {
   height: 24px;
@@ -45,10 +47,18 @@ body {
   gap: inherit;
 }
 
+.keyboard button {
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .keybaord__key--pressing {
   background-color: rgb(158, 158, 255);
 }
-
 
 
 @media (min-width: 360px) {
