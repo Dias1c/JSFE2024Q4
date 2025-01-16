@@ -59,22 +59,3 @@ body {
 .keybaord__key--pressing {
   background-color: rgb(158, 158, 255);
 }
-
-
-@media (min-width: 360px) {
-  .game {
-    scale: 1;
-  }
-}
-
-@media (min-width: 768px) {
-  .game {
-    scale: 2;
-  }
-}
-
-@media (min-width: 1441px) {
-  .game {
-    scale: 2.5;
-  }
-}
