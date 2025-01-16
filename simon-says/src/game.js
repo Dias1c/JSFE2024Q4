@@ -46,6 +46,7 @@ export class Game {
 
     this.setControllersTo({ elementTarget });
     this.setEventListeners();
+    this.initAdaptiveGameScale();
     this.setInitialState();
   }
 
@@ -120,6 +121,30 @@ export class Game {
     buttonNext.hide();
 
     this.onChangeDifficultyLevelTo({ difficulty: this.difficulty });
+  }
+
+  initAdaptiveGameScale() {
+    const elementGame = document.querySelector(".game");
+    let getGameWindowRelativeScale = () => {
+      let currentScale = elementGame.style.scale || 1;
+      const scale =
+        window.document.body.clientWidth /
+        (elementGame.getBoundingClientRect().width / currentScale);
+
+      if (scale > 2.5) {
+        return 2.5;
+      }
+      if (scale < 1) {
+        return 1;
+      }
+
+      return scale;
+    };
+
+    elementGame.style.scale = getGameWindowRelativeScale();
+    window.addEventListener("resize", () => {
+      elementGame.style.scale = getGameWindowRelativeScale();
+    });
   }
 
   setEventListeners() {
@@ -270,6 +295,8 @@ export class Game {
       targetValue += chars[idx];
     }
     this.targetValue = targetValue;
+
+    console.log("Sequence for you:", this.targetValue);
 
     this.playSequence();
   }
