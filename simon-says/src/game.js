@@ -296,6 +296,8 @@ export class Game {
     }
     this.targetValue = targetValue;
 
+    console.log("Sequence for you:", this.targetValue);
+
     this.playSequence();
   }
 
