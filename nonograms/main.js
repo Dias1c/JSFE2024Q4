@@ -129,7 +129,6 @@ const createUITableCluesY = ({ columns, maxColumnLength }) => {
     for (let j = 0; j < columns.length; j++) {
       const clueColumn = columns[j];
       const gap = maxColumnLength - columns[j].length;
-      console.log(i, j, clueColumn);
 
       const td = document.createElement("td");
       trCluesColumns.appendChild(td);
