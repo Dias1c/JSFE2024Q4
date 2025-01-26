@@ -181,11 +181,14 @@ const createUITableCluesX = ({ maxRowLength, rows }) => {
 };
 
 /**
- * @param {Pick<Pick<ReturnType<typeof generateBoardData>, 'clues'>['clues'], 'rows' | 'columns'>} param0
+ * @param {Pick<Pick<ReturnType<typeof generateBoardData>, 'clues'>['clues'], 'rows' | 'columns'> &  Pick<ReturnType<typeof generateBoardData>, 'board'> & { withoutEvents: boolean }} param0
  */
-const createUITablePaint = ({ columns, rows }) => {
+const createUITablePaint = ({ columns, rows, board, viewOnly }) => {
   const tablePaint = document.createElement("table");
   tablePaint.classList.add("table_paint");
+  if (viewOnly) {
+    tablePaint.classList.add("view_only");
+  }
   const tbodyPaint = document.createElement("tbody");
 
   for (let i = 0; i < rows.length; i++) {
@@ -194,7 +197,19 @@ const createUITablePaint = ({ columns, rows }) => {
       const td = document.createElement("td");
       trPaint.appendChild(td);
 
+      if (!!board && !!board[i]) {
+        if (board[i][j] == 1) {
+          td.classList.add("filled");
+        }
+        if (board[i][j] == 2) {
+          td.classList.add("crossed");
+        }
+      }
+
       // Events
+      if (viewOnly) {
+        continue;
+      }
       td.addEventListener("click", () => {
         td.classList.toggle("filled");
         td.classList.remove("crossed");
@@ -214,13 +229,13 @@ const createUITablePaint = ({ columns, rows }) => {
 /**
  * @param {Pick<ReturnType<typeof generateBoardData>, 'clues'>} param0
  */
-const createUI = ({ clues }) => {
+const createUI = ({ clues, board }) => {
   const sectionBoard = document.createElement("section");
   sectionBoard.classList.add("board");
 
   const tableCluesColumns = createUITableCluesY({ ...clues });
   const tableCluesRows = createUITableCluesX({ ...clues });
-  const tablePaint = createUITablePaint({ ...clues });
+  const tablePaint = createUITablePaint({ ...clues, board });
 
   sectionBoard.appendChild(document.createElement("div"));
   sectionBoard.appendChild(tableCluesColumns);
@@ -234,6 +249,13 @@ const createUI = ({ clues }) => {
 
 const data = generateBoardData({ width: 5, height: 5 });
 
+const { sectionBoard, tableCluesColumns, tableCluesRows, tablePaint } =
+  createUI(data);
+
+document.body.appendChild(sectionBoard);
+
+// LOGS
+
 console.group("Data Board");
 console.table(data.board);
 
@@ -243,8 +265,3 @@ console.log("Clues: rows:");
 console.log(data.clues.rows, data.clues.maxRowLength);
 
 console.groupEnd();
-
-const { sectionBoard, tableCluesColumns, tableCluesRows, tablePaint } =
-  createUI(data);
-
-document.body.appendChild(sectionBoard);
