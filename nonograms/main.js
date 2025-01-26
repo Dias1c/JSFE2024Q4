@@ -198,6 +198,12 @@ const createUITablePaint = ({ columns, rows }) => {
       // Events
       td.addEventListener("click", () => {
         td.classList.toggle("filled");
+        td.classList.remove("crossed");
+      });
+      td.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
+        td.classList.toggle("crossed");
+        td.classList.remove("filled");
       });
     }
     tbodyPaint.appendChild(trPaint);
