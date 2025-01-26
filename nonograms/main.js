@@ -122,13 +122,27 @@ const createUITableCluesY = ({ columns, maxColumnLength }) => {
   tableCluesColumns.classList.add("table_clues");
 
   const tbodyCluesColumns = document.createElement("tbody");
-  const trCluesColumns = document.createElement("tr");
-  for (let i = 0; i < columns.length; i++) {
-    const td = document.createElement("td");
-    trCluesColumns.appendChild(td);
-    td.innerText = i;
+
+  for (let i = 0; i < maxColumnLength; i++) {
+    const trCluesColumns = document.createElement("tr");
+
+    for (let j = 0; j < columns.length; j++) {
+      const clueColumn = columns[j];
+      const gap = maxColumnLength - columns[j].length;
+      console.log(i, j, clueColumn);
+
+      const td = document.createElement("td");
+      trCluesColumns.appendChild(td);
+
+      if (gap > i) {
+        continue;
+      }
+      td.innerText = clueColumn[i - gap];
+    }
+
+    tbodyCluesColumns.appendChild(trCluesColumns);
   }
-  tbodyCluesColumns.appendChild(trCluesColumns);
+
   tableCluesColumns.appendChild(tbodyCluesColumns);
 
   return tableCluesColumns;
@@ -144,9 +158,22 @@ const createUITableCluesX = ({ maxRowLength, rows }) => {
   const tbodyCluesRows = document.createElement("tbody");
   for (let i = 0; i < rows.length; i++) {
     const trCluesRows = document.createElement("tr");
-    const td = document.createElement("td");
-    trCluesRows.appendChild(td);
-    td.innerText = i;
+
+    const clueRow = rows[i];
+    for (let j = 0; j < maxRowLength; j++) {
+      const td = document.createElement("td");
+      trCluesRows.appendChild(td);
+
+      const gap = maxRowLength - clueRow.length;
+      if (gap > j) {
+        continue;
+      }
+
+      const clueIdx = j - gap;
+
+      td.innerText = clueRow[clueIdx];
+    }
+
     tbodyCluesRows.appendChild(trCluesRows);
   }
   tableCluesRows.appendChild(tbodyCluesRows);
