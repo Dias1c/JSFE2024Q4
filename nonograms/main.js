@@ -112,17 +112,18 @@ const generateBoardData = ({ width, height }) => {
   };
 };
 
-const createUI = ({ columns, rows }) => {
-  const sectionBoard = document.createElement("section");
-  sectionBoard.classList.add("board");
+// UI
 
-  // Table Clues Columns
+/**
+ * @param {Pick<Pick<ReturnType<typeof generateBoardData>, 'clues'>['clues'], 'columns' | 'maxColumnLength'>} param0
+ */
+const createUITableCluesY = ({ columns, maxColumnLength }) => {
   const tableCluesColumns = document.createElement("table");
   tableCluesColumns.classList.add("table_clues");
 
   const tbodyCluesColumns = document.createElement("tbody");
   const trCluesColumns = document.createElement("tr");
-  for (let i = 0; i < columns; i++) {
+  for (let i = 0; i < columns.length; i++) {
     const td = document.createElement("td");
     trCluesColumns.appendChild(td);
     td.innerText = i;
@@ -130,12 +131,18 @@ const createUI = ({ columns, rows }) => {
   tbodyCluesColumns.appendChild(trCluesColumns);
   tableCluesColumns.appendChild(tbodyCluesColumns);
 
-  // Table Clues Rows
+  return tableCluesColumns;
+};
+
+/**
+ * @param {Pick<Pick<ReturnType<typeof generateBoardData>, 'clues'>['clues'], 'rows' | 'maxRowLength'>} param0
+ */
+const createUITableCluesX = ({ maxRowLength, rows }) => {
   const tableCluesRows = document.createElement("table");
   tableCluesRows.classList.add("table_clues");
 
   const tbodyCluesRows = document.createElement("tbody");
-  for (let i = 0; i < rows; i++) {
+  for (let i = 0; i < rows.length; i++) {
     const trCluesRows = document.createElement("tr");
     const td = document.createElement("td");
     trCluesRows.appendChild(td);
@@ -144,14 +151,20 @@ const createUI = ({ columns, rows }) => {
   }
   tableCluesRows.appendChild(tbodyCluesRows);
 
-  // Table Paint
+  return tableCluesRows;
+};
+
+/**
+ * @param {Pick<Pick<ReturnType<typeof generateBoardData>, 'clues'>['clues'], 'rows' | 'columns'>} param0
+ */
+const createUITablePaint = ({ columns, rows }) => {
   const tablePaint = document.createElement("table");
   tablePaint.classList.add("table_paint");
   const tbodyPaint = document.createElement("tbody");
 
-  for (let i = 0; i < rows; i++) {
+  for (let i = 0; i < rows.length; i++) {
     const trPaint = document.createElement("tr");
-    for (let j = 0; j < columns; j++) {
+    for (let j = 0; j < columns.length; j++) {
       const td = document.createElement("td");
       trPaint.appendChild(td);
 
@@ -163,6 +176,19 @@ const createUI = ({ columns, rows }) => {
     tbodyPaint.appendChild(trPaint);
   }
   tablePaint.appendChild(tbodyPaint);
+  return tablePaint;
+};
+
+/**
+ * @param {Pick<ReturnType<typeof generateBoardData>, 'clues'>} param0
+ */
+const createUI = ({ clues }) => {
+  const sectionBoard = document.createElement("section");
+  sectionBoard.classList.add("board");
+
+  const tableCluesColumns = createUITableCluesY({ ...clues });
+  const tableCluesRows = createUITableCluesX({ ...clues });
+  const tablePaint = createUITablePaint({ ...clues });
 
   sectionBoard.appendChild(document.createElement("div"));
   sectionBoard.appendChild(tableCluesColumns);
@@ -187,6 +213,6 @@ console.log(data.clues.rows, data.clues.maxRowLength);
 console.groupEnd();
 
 const { sectionBoard, tableCluesColumns, tableCluesRows, tablePaint } =
-  createUI({ columns: 5, rows: 5 });
+  createUI(data);
 
 document.body.appendChild(sectionBoard);
