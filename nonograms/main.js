@@ -229,7 +229,7 @@ const createUITablePaint = ({ columns, rows, board, viewOnly }) => {
 /**
  * @param {Pick<ReturnType<typeof generateBoardData>, 'clues'>} param0
  */
-const createUI = ({ clues, board }) => {
+const createUISectionBoard = ({ clues, board }) => {
   const sectionBoard = document.createElement("section");
   sectionBoard.classList.add("board");
 
@@ -250,7 +250,7 @@ const createUI = ({ clues, board }) => {
 const data = generateBoardData({ width: 5, height: 5 });
 
 const { sectionBoard, tableCluesColumns, tableCluesRows, tablePaint } =
-  createUI(data);
+  createUISectionBoard(data);
 
 document.body.appendChild(sectionBoard);
 
