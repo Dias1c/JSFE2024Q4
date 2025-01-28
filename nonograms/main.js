@@ -100,10 +100,12 @@ const generateBoardClues = ({ board }) => {
 };
 
 /**
- * @param {{ width: number, height: number }} param0
+ * @param {{ width: number, height: number } | { board: number[][]}} param0
  */
-const generateBoardData = ({ width, height }) => {
-  const board = generateBoard({ width, height });
+const generateBoardData = ({ width, height, board }) => {
+  if (!board) {
+    board = generateBoard({ width, height });
+  }
   const clues = generateBoardClues({ board });
 
   return {
@@ -245,7 +247,10 @@ const createUISectionBoard = ({ clues, board }) => {
   return { sectionBoard, tableCluesColumns, tableCluesRows, tablePaint };
 };
 
-const createUISectionLevelsSelection = ({ count, width, height }) => {
+/**
+ * @param {{ levels: {width: number, height: number}[] }} param0
+ */
+const createUISectionLevelsSelection = ({ levels }) => {
   const sectionLevels = document.createElement("section");
   sectionLevels.classList.add("section_levels");
 
@@ -257,8 +262,13 @@ const createUISectionLevelsSelection = ({ count, width, height }) => {
   const divLevelsOptions = document.createElement("div");
   divLevelsOptions.classList.add("section_levels__options");
 
-  for (let i = 0; i < count; i++) {
-    const data = generateBoardData({ width, height });
+  for (let i = 0; i < levels.length; i++) {
+    const level = levels[i];
+    const data = generateBoardData({
+      width: level.width,
+      height: level.height,
+      board: level.board,
+    });
     const tablePaint = createUITablePaint({
       board: data.board,
       columns: data.clues.columns,
@@ -287,6 +297,79 @@ const createUISectionLevelsSelection = ({ count, width, height }) => {
   return { sectionLevels };
 };
 
+const levels = [
+  {
+    board: [
+      [1, 0, 0, 0, 1],
+      [0, 0, 0, 0, 0],
+      [0, 0, 1, 0, 0],
+      [0, 0, 0, 0, 0],
+      [1, 0, 0, 0, 1],
+    ],
+  },
+  {
+    board: [
+      [1, 0, 1, 0, 1],
+      [0, 0, 1, 0, 0],
+      [1, 1, 1, 1, 1],
+      [0, 0, 1, 0, 0],
+      [1, 0, 1, 0, 1],
+    ],
+  },
+  {
+    width: 5,
+    height: 5,
+  },
+  {
+    width: 5,
+    height: 5,
+  },
+  {
+    width: 5,
+    height: 5,
+  },
+  {
+    width: 10,
+    height: 10,
+  },
+  {
+    width: 10,
+    height: 10,
+  },
+  {
+    width: 10,
+    height: 10,
+  },
+  {
+    width: 10,
+    height: 10,
+  },
+  {
+    width: 10,
+    height: 10,
+  },
+  {
+    width: 15,
+    height: 15,
+  },
+  {
+    width: 15,
+    height: 15,
+  },
+  {
+    width: 15,
+    height: 15,
+  },
+  {
+    width: 15,
+    height: 15,
+  },
+  {
+    width: 15,
+    height: 15,
+  },
+];
+
 // Using
 
 const data = generateBoardData({ width: 5, height: 5 });
@@ -295,9 +378,7 @@ const { sectionBoard, tableCluesColumns, tableCluesRows, tablePaint } =
   createUISectionBoard(data);
 
 const { sectionLevels } = createUISectionLevelsSelection({
-  count: 5,
-  width: 5,
-  height: 5,
+  levels,
 });
 
 document.body.appendChild(sectionBoard);
