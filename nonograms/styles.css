@@ -93,3 +93,48 @@ body {
 .table_paint td.error {
   background-color: var(--paint-cell-color-error);
 }
+
+.section_levels {}
+
+.section_levels__options {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  overflow: auto;
+  flex-wrap: wrap;
+}
+
+.section_levels__options .table_paint {
+  filter: blur(var(--border-width));
+  transition: 0.2s;
+
+  &:hover {
+    filter: blur(0);
+  }
+
+  &:hover::before {
+    text-align: center;
+    content: 'select';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.8);
+
+    animation: absolute_centered_pulsate 0.2s infinite;
+  }
+}
+
+@keyframes absolute_centered_pulsate {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
