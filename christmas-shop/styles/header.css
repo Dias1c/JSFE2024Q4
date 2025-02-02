@@ -1,0 +1,187 @@
+@import url(global.css);
+
+header {
+  position: relative;
+  z-index: 1;
+  padding: 0 8px;
+  overflow: hidden;
+  max-width: var(--section-width-max);
+  margin: 0 auto;
+}
+
+.header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 12px 0;
+}
+
+.header__container__company {
+  padding: 8px 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header__container__company__logo {
+  height: 24px;
+  width: 24px;
+}
+
+.header__container__nav {
+  flex: 1;
+}
+
+@media all and (max-width: 768px) {
+  .header__container__nav {
+    display: none;
+  }
+}
+
+
+.header__container__nav ul {
+  display: flex;
+  justify-content: end;
+  gap: 8px;
+}
+
+.header__menu__button {
+  text-transform: uppercase;
+  padding: 12px 20px;
+  border-radius: 12px;
+
+  transition: 0.2s;
+}
+
+.header__menu__button.active {
+  color: var(--color--primary);
+  background-color: var(--color--primary-10);
+}
+
+@media (hover: hover) {
+  .header__menu__button:hover {
+    color: var(--color--primary);
+    background-color: var(--color--primary-10);
+  }
+}
+
+.header__menu__button.active {
+  cursor: default;
+}
+
+
+
+.header__container__burger_button {
+  display: none;
+}
+
+@media all and (max-width: 768px) {
+
+  /* TODO: add class "active" to change state */
+  .header__container__burger_button {
+    display: block;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background: none;
+  }
+
+  .header__container__burger_button::before,
+  .header__container__burger_button::after {
+    display: block;
+    content: '';
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+
+    width: 20px;
+    height: 1px;
+    border-radius: 0.5px;
+    background-color: var(--color--dark);
+
+    transition: 0.5s;
+  }
+
+  .header__container__burger_button::before {
+    top: calc(50% - 5px);
+  }
+
+  .header__container__burger_button::after {
+    top: calc(50% + 4px);
+  }
+
+  .header__container__burger_button.active::before,
+  .header__container__burger_button.active::after {
+    top: 50%;
+  }
+
+  .header__container__burger_button.active::before {
+    transform: translate(-50%, 50%) rotate(45deg);
+  }
+
+  .header__container__burger_button.active::after {
+    transform: translate(-50%, 50%) rotate(-45deg);
+  }
+}
+
+.block_burger_menu__nav {
+  position: fixed;
+  top: 0;
+  transform: translate(100%);
+  padding-bottom: 64px;
+  /* ? Header остается на месте, и после малого скролла если нажать на кнопку burger то будет щель. Эта высота ее и компенсирует.  */
+  height: calc(100vh + 64px);
+  width: 100vw;
+
+  background-color: var(--color--static-white);
+
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  transition: right 0.2s, transform 0.2s;
+}
+
+@supports (height: 100dvh) {
+  .block_burger_menu__nav {
+    height: calc(100dvh + 64px);
+  }
+}
+
+@media all and (max-width: 768px) {
+  .block_burger_menu__nav {
+    display: flex;
+  }
+}
+
+.block_burger_menu__nav.active {
+  transform: none;
+}
+
+.block_burger_menu__nav ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.block_burger_menu__nav ul li {
+  display: block;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+}
+
+.block_burger_menu__nav .block_burger_menu__button {
+  display: block;
+  padding: 12px 20px;
+}
