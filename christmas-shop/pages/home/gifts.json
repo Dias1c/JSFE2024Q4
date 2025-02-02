@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Console.log Guru",
+    "description": "Uses console.log like a crystal ball to find any issue.",
+    "category": "For Work",
+    "superpowers": {
+      "live": "+500",
+      "create": "+500",
+      "love": "+200",
+      "dream": "+400"
+    }
+  },
+  {
+    "name": "Hydration Bot",
+    "description": "Drinks the recommended 2 liters of water a day like a health-programmed robot.",
+    "category": "For Health",
+    "superpowers": {
+      "live": "+500",
+      "create": "+300",
+      "love": "+500",
+      "dream": "+500"
+    }
+  },
+  {
+    "name": "Merge Master",
+    "description": "Merges branches in Git without conflicts, like a wizard during an exam.",
+    "category": "For Work",
+    "superpowers": {
+      "live": "+200",
+      "create": "+500",
+      "love": "+200",
+      "dream": "+300"
+    }
+  },
+  {
+    "name": "Spontaneous Coding Philosopher",
+    "description": "Philosophically accepts any client suggestion after a long refactor.",
+    "category": "For Harmony",
+    "superpowers": {
+      "live": "+300",
+      "create": "+200",
+      "love": "+500",
+      "dream": "+400"
+    }
+  }
+]

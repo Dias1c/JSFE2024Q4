@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+:root {
+  --section-width-max: 1440px;
+  --container-width-max: 1276px;
+  --box-small-width: 426px;
+
+  --color--primary: #FF4646;
+  --color--primary-10: #FF46461A;
+  --color--dark: #181C29;
+  --color--static-white: #fff;
+  --color--static-white-40: #FFFFFF66;
+  --color--static-white-20: #FFFFFF33;
+  --color--tag-purple: #4361FF;
+  --color--tag-pink: #FF43F7;
+  --color--tag-green: #06A44F;
+  --color--content-background: #ECF3F8;
+  --color--overlay: #181C29CC;
+
+
+  --border-radius-default: 20px;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--color--dark);
+
+  background-color: var(--color--static-white);
+}
+
+nav * {
+  list-style: none;
+}
+
+img,
+svg {
+  display: block;
+}
+
+/* ? Text Styles */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+button,
+a {
+  font-family: Montserrat;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: 32px;
+  line-height: 48px;
+  letter-spacing: 0.18em;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 36.48px;
+  letter-spacing: 0.16em;
+
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24.32px;
+  letter-spacing: 0.08em;
+}
+
+h4 {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 15.6px;
+  letter-spacing: 0.05em;
+}
+
+p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 23.68px;
+}
+
+.typography--action-large {
+  font-family: Montserrat;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 36.48px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.typography--action-small {
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 15.6px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.typography--caption {
+  font-family: Allura;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.05em;
+}
+
+.typography--slider-text {
+  font-family: Montserrat;
+  font-size: 80px;
+  font-weight: 600;
+  line-height: 97.52px;
+  letter-spacing: 0.0038em;
+  text-transform: uppercase;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: 0.2s;
+}
+
+.color-tag--purple {
+  color: var(--color--tag-purple);
+}
+
+.color-tag--green {
+  color: var(--color--tag-green);
+}
+
+.color-tag--pink {
+  color: var(--color--tag-pink);
+}
+
+/* Button Styles */
+button {
+  border: none;
+  cursor: pointer;
+
+  transition: all 0.2s;
+}
+
+button:disabled,
+button[disabled] {
+  cursor: not-allowed;
+}
+
+/* BUTTON PRIMARY */
+.button--primary {
+  border-radius: var(--border-radius-default);
+  background-color: var(--color--dark);
+  padding: 20px 32px;
+  color: var(--color--static-white);
+}
+
+@media (hover: hover) {
+  .button--primary:hover {
+    background-color: var(--color--static-white);
+    color: var(--color--dark);
+  }
+}
+
+
+/* BUTTON SLIDER */
+.button--slider-arrow {
+  background: none;
+  border: 1px solid var(--color--static-white);
+  border-radius: var(--border-radius-default);
+  color: var(--color--static-white);
+
+  padding: 16px;
+}
+
+.button--slider-arrow>svg {
+  width: 22px;
+  height: 22px;
+}
+
+@media (hover: hover) {
+
+  .button--slider-arrow:hover {
+    background: var(--color--static-white);
+    color: var(--color--primary);
+  }
+}
+
+.button--slider-arrow:disabled,
+.button--slider-arrow[disabled] {
+  opacity: 0.4;
+}
+
+@media (hover: hover) {
+
+  .button--slider-arrow:disabled:hover,
+  .button--slider-arrow[disabled]:hover {
+    background: none;
+    color: var(--color--static-white);
+  }
+}
+
+
+/* BUTTON BACK TO TOP */
+
+.button--back-to-top {
+  border: 1px solid var(--color--primary);
+  border-radius: 100%;
+  padding: 22px;
+  background-color: var(--color--static-white);
+}
+
+
+/* SECTIONS */
+section {
+  padding: 60px 8px;
+  overflow: hidden;
+  max-width: var(--section-width-max);
+  margin: 0 auto;
+}
+
+header>*,
+section>*,
+footer>* {
+  max-width: var(--container-width-max);
+  width: 100%;
+  margin: 0 auto;
+}

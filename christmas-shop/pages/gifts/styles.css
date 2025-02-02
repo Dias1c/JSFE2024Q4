@@ -1,0 +1,68 @@
+@import url(../../styles/global.css);
+@import url(../../styles/header.css);
+@import url(../../styles/footer.css);
+@import url(../../styles/gift-cards.css);
+
+
+.section_gifts {
+  background-color: var(--color--primary);
+  background-image: url(../../assets/images/bg-garland.png);
+  background-position: top;
+  background-size: 100%;
+  background-repeat: no-repeat;
+
+  border-radius: var(--border-radius-default);
+}
+
+.section_gifts__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.section_gifts__container__title {
+  max-width: var(--box-small-width);
+  text-align: center;
+  color: var(--color--static-white);
+}
+
+.section_gifts__container__tabs {
+  display: flex;
+  gap: 8px;
+}
+
+@media all and (max-width: 380px) {
+  .section_gifts__container__tabs {
+    gap: 0;
+  }
+}
+
+.section_gifts__container__tabs__item {
+  color: var(--color--static-white);
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: none;
+
+  transition: 0.2s;
+}
+
+.section_gifts__container__tabs__item.active {
+  background-color: var(--color--static-white-20);
+}
+
+@media (hover: hover) {
+  .section_gifts__container__tabs__item:hover {
+    background-color: var(--color--static-white-20);
+  }
+}
+
+.section_gifts__container__tabs__item.active {
+  cursor: default;
+}
+
+@media all and (max-width: 380px) {
+  .section_gifts__container__tabs__item {
+    padding: 12px 8px;
+  }
+}
