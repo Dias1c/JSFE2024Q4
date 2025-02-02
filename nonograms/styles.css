@@ -1,0 +1,140 @@
+:root {
+  --border-color: #6c6c6c;
+  --border-width: 1px;
+  --cell-size: 24px;
+  --clue-cell-color: #a0a0a0;
+  --paint-cell-color: #fff;
+  --paint-cell-color-filled: #000;
+  --paint-cell-color-error: red;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.board {
+  width: fit-content;
+  display: grid;
+  gap: var(--border-width);
+  grid-template-columns: repeat(2, auto);
+}
+
+.table_clues,
+.table_paint {
+  border-spacing: 0;
+  border: var(--border-width) solid var(--border-color);
+}
+
+
+:is(.table_clues, .table_paint) td {
+  border: var(--border-width) solid var(--border-color);
+  overflow: hidden;
+
+  width: var(--cell-size);
+  height: var(--cell-size);
+
+  text-align: center;
+  transition: 0.2s;
+}
+
+.table_clues {
+  background-color: var(--clue-cell-color);
+}
+
+.table_paint td {
+  outline: 0 solid var(--border-color);
+}
+
+.table_paint:not(.view_only) td:hover {
+  outline: var(--border-width) solid var(--border-color);
+  outline-offset: calc((var(--border-width) + var(--border-width) * 4) * -1);
+  border-radius: calc(var(--border-width) * 4);
+}
+
+.table_paint td.crossed {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: calc(var(--cell-size) + var(--cell-size) / 3);
+    height: 0;
+    border: var(--border-width) dashed var(--border-color);
+    border-radius: var(--border-width);
+    background-color: var(--paint-cell-color-filled);
+    transform-origin: center;
+  }
+
+  &::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+}
+
+.table_paint td.filled {
+  background-color: var(--paint-cell-color-filled);
+}
+
+.table_paint td.error {
+  background-color: var(--paint-cell-color-error);
+}
+
+.section_levels {}
+
+.section_levels__options {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  overflow: auto;
+  flex-wrap: wrap;
+}
+
+.section_levels__options .table_paint {
+  filter: blur(var(--border-width));
+  transition: 0.2s;
+
+  &:hover {
+    filter: blur(0);
+  }
+
+  &:hover::before {
+    text-align: center;
+    content: 'select';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.8);
+
+    animation: absolute_centered_pulsate 0.2s infinite;
+  }
+}
+
+@keyframes absolute_centered_pulsate {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
